@@ -1,0 +1,1780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kwentuhan Studio: English conversation coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Design system: UI UX Pro Max, Claymorphism (restrained for adult learners), learning indigo + progress green, Plus Jakarta Sans */
+:root{
+  --bg:#EEF2FF; --surface:#FFFFFF; --surface-2:#F5F7FF; --ink:#312E81; --text:#1E1B4B; --muted:#475569; --line:#C7D2FE;
+  --primary:#4F46E5; --on-primary:#FFFFFF; --accent:#16A34A; --on-accent:#000000; --danger:#DC2626; --on-danger:#FFFFFF;
+  --me:#4F46E5; --me-ink:#FFFFFF; --ring:#4F46E5;
+  --good:#15803D; --minor:#B45309; --fix:#DC2626; --mark:#FEF3C7; --miss:#FEE2E2;
+  --clay:0 10px 24px -12px rgba(49,46,129,.35), inset 0 -3px 0 rgba(49,46,129,.07), inset 0 2px 0 rgba(255,255,255,.9);
+  --clay-sm:0 4px 10px -6px rgba(49,46,129,.35), inset 0 -2px 0 rgba(49,46,129,.07);
+  --clay-press:0 2px 6px -4px rgba(49,46,129,.35), inset 0 2px 4px rgba(49,46,129,.12);
+  --r-lg:24px; --r-md:18px; --r-sm:14px;
+  --t-fast:120ms; --t-med:200ms; --ease:cubic-bezier(.2,.8,.2,1);
+  --font:"Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F172A; --surface:#1A2235; --surface-2:#202A40; --ink:#E0E7FF; --text:#F8FAFC; --muted:#CBD5E1; --line:#334155;
+    --primary:#818CF8; --on-primary:#0F172A; --accent:#22C55E; --on-accent:#000000; --danger:#F87171; --on-danger:#0F172A;
+    --me:#4F46E5; --me-ink:#FFFFFF; --ring:#A5B4FC;
+    --good:#4ADE80; --minor:#FBBF24; --fix:#F87171; --mark:#4A3B12; --miss:#4C1D24;
+    --clay:0 12px 26px -14px rgba(0,0,0,.8), inset 0 -3px 0 rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.07);
+    --clay-sm:0 4px 12px -6px rgba(0,0,0,.7), inset 0 -2px 0 rgba(0,0,0,.25);
+    --clay-press:0 1px 4px -2px rgba(0,0,0,.7), inset 0 2px 5px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F172A; --surface:#1A2235; --surface-2:#202A40; --ink:#E0E7FF; --text:#F8FAFC; --muted:#CBD5E1; --line:#334155;
+  --primary:#818CF8; --on-primary:#0F172A; --accent:#22C55E; --on-accent:#000000; --danger:#F87171; --on-danger:#0F172A;
+  --me:#4F46E5; --me-ink:#FFFFFF; --ring:#A5B4FC;
+  --good:#4ADE80; --minor:#FBBF24; --fix:#F87171; --mark:#4A3B12; --miss:#4C1D24;
+  --clay:0 12px 26px -14px rgba(0,0,0,.8), inset 0 -3px 0 rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.07);
+  --clay-sm:0 4px 12px -6px rgba(0,0,0,.7), inset 0 -2px 0 rgba(0,0,0,.25);
+  --clay-press:0 1px 4px -2px rgba(0,0,0,.7), inset 0 2px 5px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:var(--font);font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+button:disabled{cursor:not-allowed}
+:focus-visible{outline:3px solid var(--ring);outline-offset:3px}
+[hidden]{display:none!important}
+#app{height:100%;display:flex;flex-direction:column;max-width:720px;margin:0 auto}
+.icon{width:24px;height:24px;flex:none}
+.icon-sm{width:18px;height:18px;flex:none}
+
+/* header */
+.top{display:flex;align-items:center;gap:10px;padding:14px 20px 4px}
+.brand{font-weight:800;font-size:1.3rem;letter-spacing:-.02em;margin-right:auto;color:var(--ink)}
+.brand small{display:block;font-weight:500;font-size:.8rem;color:var(--muted);letter-spacing:0}
+.syncpill{font-size:.8rem;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px;background:var(--surface);padding:6px 12px;border-radius:999px;box-shadow:var(--clay-sm)}
+.syncpill i{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.syncpill.synced i{background:var(--accent)} .syncpill.error i{background:var(--danger)}
+
+/* bottom navigation */
+.tabs{display:flex;gap:4px;background:var(--surface);border-top:2px solid var(--line);padding:6px 8px}
+.tabs button{flex:1;min-width:0;min-height:56px;border:0;background:transparent;border-radius:var(--r-sm);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:.78rem;font-weight:600;color:var(--muted);transition:background var(--t-med) var(--ease),color var(--t-med) var(--ease)}
+.tabs button[aria-current="page"]{color:var(--primary);background:color-mix(in srgb,var(--primary) 12%,transparent)}
+.tabs button:active{background:color-mix(in srgb,var(--primary) 18%,transparent)}
+
+.scroll{flex:1;min-height:0;overflow-y:auto;padding:8px 20px 32px}
+.hello{font-weight:800;font-size:clamp(1.75rem,6.5vw,2.4rem);line-height:1.1;letter-spacing:-.03em;margin:16px 0 14px;color:var(--ink)}
+.stats{color:var(--muted);margin:0 0 18px}
+h2{font-weight:700;font-size:1.1rem;margin:28px 0 12px;letter-spacing:-.01em;color:var(--ink)}
+h3{font-weight:700}
+
+/* clay surfaces */
+.goal,.card,.total,.score,.scn,.panel,details.settings,.resume,.notice{background:var(--surface);border:2px solid var(--line);box-shadow:var(--clay)}
+.goal{display:flex;align-items:center;gap:16px;border-radius:var(--r-lg);padding:16px 18px}
+.goal b{display:block;font-size:1.05rem;color:var(--ink)}
+.scenarios{display:grid;gap:10px}
+.scn{display:flex;gap:14px;align-items:flex-start;text-align:left;border-radius:var(--r-md);padding:14px 16px;min-height:48px;transition:box-shadow var(--t-fast) var(--ease),border-color var(--t-med) var(--ease)}
+.scn:active{box-shadow:var(--clay-press)}
+.scn .dot{flex:none;width:20px;height:20px;border-radius:50%;border:2.5px solid var(--muted);margin-top:2px;transition:all var(--t-med) var(--ease)}
+.scn[aria-checked="true"]{border-color:var(--primary)}
+.scn[aria-checked="true"] .dot{border-color:var(--primary);background:var(--primary);box-shadow:inset 0 0 0 4px var(--surface)}
+.scn b{display:block;font-weight:700;color:var(--ink)}
+.scn span{color:var(--muted);font-size:.92rem}
+.panel{border-color:var(--primary);border-radius:var(--r-md);padding:4px 16px 16px;margin-top:10px}
+.panel h3{font-size:.95rem;margin:16px 0 8px}
+textarea.field,input.field,select.field{width:100%;min-height:48px;background:var(--surface-2);border:2px solid var(--line);border-radius:var(--r-sm);padding:11px 14px;transition:border-color var(--t-med) var(--ease)}
+textarea.field:focus,input.field:focus,select.field:focus{border-color:var(--primary);outline:none}
+textarea.field{min-height:88px;resize:vertical}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{min-height:44px;border:2px solid var(--line);background:var(--surface);padding:8px 16px;border-radius:999px;font-size:.92rem;font-weight:600;box-shadow:var(--clay-sm);transition:all var(--t-fast) var(--ease)}
+.seg button:active{box-shadow:var(--clay-press)}
+.seg button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary);color:var(--on-primary)}
+.hint{color:var(--muted);font-size:.9rem;margin:8px 0 0}
+.seg.seg3{flex-wrap:nowrap;gap:6px}
+.seg.seg3 button{flex:1 1 auto;min-width:0;padding:8px clamp(6px,2vw,12px);font-size:clamp(.78rem,3.5vw,.9rem);white-space:nowrap;text-align:center}
+details.settings{margin-top:24px;border-radius:var(--r-md);padding:2px 16px}
+details.settings summary{min-height:48px;display:flex;align-items:center;font-weight:700;cursor:pointer;color:var(--ink)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:2px solid var(--line)}
+.row.col{flex-direction:column;align-items:stretch}
+.row label{flex:1}
+.row input[type=range]{width:45%;min-height:44px;accent-color:var(--primary)}
+.switch{appearance:none;-webkit-appearance:none;width:52px;height:32px;border-radius:999px;background:var(--line);position:relative;flex:none;cursor:pointer;transition:background var(--t-med) var(--ease)}
+.switch::after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.25);transition:transform var(--t-med) var(--ease)}
+.switch:checked{background:var(--primary)}
+.switch:checked::after{transform:translateX(20px)}
+.primary{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;margin-top:24px;border:0;border-radius:var(--r-md);background:var(--accent);color:var(--on-accent);font-weight:800;font-size:1.05rem;padding:14px;box-shadow:0 10px 22px -10px color-mix(in srgb,var(--accent) 70%,transparent), inset 0 -4px 0 rgba(0,0,0,.18), inset 0 2px 0 rgba(255,255,255,.3);transition:box-shadow var(--t-fast) var(--ease),filter var(--t-fast) var(--ease)}
+.primary:active{box-shadow:inset 0 3px 6px rgba(0,0,0,.25);filter:brightness(.97)}
+.primary:disabled{opacity:.5;box-shadow:none}
+.ghost{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 16px;font-size:.9rem;font-weight:600;color:var(--ink);box-shadow:var(--clay-sm);transition:box-shadow var(--t-fast) var(--ease)}
+.ghost:active{box-shadow:var(--clay-press)}
+.ghost:disabled{opacity:.5}
+.notice{border-color:var(--danger);border-radius:var(--r-md);padding:14px 16px;margin:12px 0;font-size:.95rem}
+.resume{display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-color:var(--primary);border-radius:var(--r-md);padding:14px 16px;margin:12px 0}
+.resume div{flex:1 1 140px}
+
+/* chat */
+#chat{flex:1;min-height:0;display:flex;flex-direction:column}
+.chatbar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--surface);border-bottom:2px solid var(--line)}
+.chatbar .title{flex:1;min-width:0}
+.chatbar .title b{display:block;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chatbar .title span{color:var(--muted);font-size:.85rem}
+.log{flex:1;min-height:0;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:16px}
+.msg{max-width:88%}
+.msg.ai{align-self:flex-start}
+.msg.me{align-self:flex-end;display:flex;flex-direction:column;align-items:flex-end}
+.bubble{padding:12px 16px;border-radius:20px;white-space:pre-wrap;word-wrap:break-word}
+.ai .bubble{background:var(--surface);border:2px solid var(--line);border-bottom-left-radius:6px;box-shadow:var(--clay-sm)}
+.me .bubble{background:var(--me);color:var(--me-ink);border-bottom-right-radius:6px;box-shadow:0 6px 14px -8px rgba(79,70,229,.6), inset 0 -3px 0 rgba(0,0,0,.15)}
+.tools{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.tiny{min-height:44px;display:inline-flex;align-items:center;gap:6px;border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 14px;font-size:.85rem;font-weight:600;color:var(--ink);box-shadow:var(--clay-sm);transition:box-shadow var(--t-fast) var(--ease)}
+.tiny:active{box-shadow:var(--clay-press)}
+.typing{color:var(--muted);font-style:italic}
+.fb{margin-top:10px;background:var(--surface);border:2px solid var(--line);border-left-width:6px;border-radius:var(--r-sm);padding:12px 14px;font-size:.95rem;width:100%;max-width:520px;text-align:left;box-shadow:var(--clay-sm)}
+.fb.great{border-left-color:var(--good)} .fb.minor{border-left-color:var(--minor)} .fb.fix{border-left-color:var(--fix)}
+.fb .tag{display:flex;align-items:center;gap:6px;font-weight:800;font-size:.85rem}
+.fb.great .tag{color:var(--good)} .fb.minor .tag{color:var(--minor)} .fb.fix .tag{color:var(--fix)}
+.fb p{margin:8px 0}
+.fb .lbl{color:var(--muted);font-size:.82rem;font-weight:600;display:block}
+.fb mark{background:var(--mark);color:inherit;border-radius:4px;padding:0 3px;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.fb ul{margin:8px 0;padding-left:20px}
+.fb .sub{border-top:2px dashed var(--line);margin-top:10px;padding-top:10px}
+.meter{display:inline-flex;gap:3px;vertical-align:middle;margin-left:8px}
+.meter i{width:16px;height:7px;border-radius:4px;background:var(--line)}
+.meter i.on{background:var(--primary)}
+.shadow-result{margin-top:8px;font-size:.9rem}
+.shadow-result .miss{background:var(--miss);border-radius:4px;padding:0 3px;text-decoration:underline wavy;text-underline-offset:3px}
+.err{color:var(--fix);font-size:.9rem;font-weight:600;margin-top:8px;text-align:right}
+
+.composer{background:var(--surface);border-top:2px solid var(--line);padding:12px 14px;display:flex;align-items:flex-end;gap:10px}
+.composer textarea{flex:1;min-height:52px;max-height:140px;resize:none;background:var(--surface-2);border:2px solid var(--line);border-radius:var(--r-md);padding:13px 16px;line-height:1.35;transition:border-color var(--t-med) var(--ease)}
+.composer textarea:focus{border-color:var(--primary);outline:none}
+.send{flex:none;width:52px;height:52px;border-radius:50%;border:2px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;box-shadow:var(--clay-sm);transition:box-shadow var(--t-fast) var(--ease)}
+.send:active{box-shadow:var(--clay-press)}
+.send:disabled{opacity:.4;box-shadow:none}
+.mic{flex:none;width:68px;height:68px;border-radius:50%;border:0;background:var(--primary);color:var(--on-primary);display:grid;place-items:center;position:relative;box-shadow:0 12px 24px -10px color-mix(in srgb,var(--primary) 80%,transparent), inset 0 -5px 0 rgba(0,0,0,.2), inset 0 3px 0 rgba(255,255,255,.25);transition:box-shadow var(--t-fast) var(--ease),background var(--t-med) var(--ease)}
+.mic:active{box-shadow:inset 0 4px 8px rgba(0,0,0,.3)}
+.mic:disabled{opacity:.45}
+.mic svg{width:30px;height:30px}
+.mic.on{background:var(--danger);color:var(--on-danger)}
+.mic.on::before,.mic.on::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--danger);opacity:.5;animation:ring 1.4s ease-out infinite}
+.mic.on::after{animation-delay:.7s}
+@keyframes ring{from{transform:scale(.9);opacity:.6}to{transform:scale(1.35);opacity:0}}
+.hfbtn{flex:none;width:48px;height:48px;border-radius:50%;border:2px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center;box-shadow:var(--clay-sm);transition:all var(--t-fast) var(--ease)}
+.hfbtn[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
+.hfbtn:active{box-shadow:var(--clay-press)}
+.drill-item{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 0;border-top:2px solid var(--line)}
+.drill-item:first-of-type{border-top:0}
+.drill-item .w{flex:1 1 150px;font-weight:700;font-size:1.05rem;color:var(--ink)}
+.drill-item .res{flex-basis:100%;font-size:.9rem}
+.ok{color:var(--good);font-weight:700} .no{color:var(--fix);font-weight:700}
+.dictbox{position:sticky;bottom:0;background:var(--surface);border:2px solid var(--primary);border-radius:var(--r-md);padding:12px;margin-top:12px;box-shadow:var(--clay)}
+.dictbox .rowx{display:flex;gap:8px;margin-top:8px}
+.dictbox input{flex:1}
+a.tiny{text-decoration:none}
+.listening-hint{text-align:center;color:var(--muted);font-size:.88rem;font-weight:500;padding:6px 14px;min-height:1.6em;background:var(--bg)}
+
+/* summary, progress, phrases, history */
+.card{border-radius:var(--r-md);padding:16px 18px;margin-bottom:12px}
+.card h2{margin-top:0}
+.scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;margin:14px 0}
+.score{border-radius:var(--r-md);padding:12px;text-align:center}
+.score b{display:block;font-weight:800;font-size:1.9rem;line-height:1;color:var(--ink)}
+.score span{color:var(--muted);font-size:.82rem;font-weight:600}
+.pips{display:flex;gap:4px;justify-content:center;margin:8px 0 4px}
+.pips i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.pips i.on{background:var(--primary)}
+.focus-item{border-top:2px solid var(--line);padding:12px 0}
+.focus-item:first-of-type{border-top:0}
+.muted{color:var(--muted)}
+.empty{color:var(--muted);text-align:center;padding:48px 12px}
+.phrase-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.phrase-row div{flex:1 1 180px}
+.hist summary{cursor:pointer;list-style:none;min-height:44px}
+.hist summary::-webkit-details-marker{display:none}
+.hist summary b{display:block;color:var(--ink)}
+.loading{color:var(--muted);padding:32px 0;text-align:center;font-weight:500}
+.totals{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
+.total{border-radius:var(--r-md);padding:14px 16px}
+.total b{display:block;font-weight:800;font-size:1.55rem;line-height:1.15;color:var(--ink)}
+.total span{color:var(--muted);font-size:.85rem;font-weight:500}
+.chart{width:100%;height:auto;display:block}
+.chart-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--muted);margin-top:6px}
+.chart-legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+.trend{width:100%;border-collapse:collapse;font-size:.95rem}
+.trend td,.trend th{padding:8px 4px;text-align:left;border-top:2px solid var(--line)}
+.trend th{font-weight:600;color:var(--muted);font-size:.85rem}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+@media (hover:hover){
+  .scn:hover,.seg button:hover,.ghost:hover,.tiny:hover,.send:not(:disabled):hover{border-color:var(--primary)}
+  .tabs button:hover{color:var(--primary)}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition-duration:0ms!important;animation:none!important}
+  .mic.on::before,.mic.on::after{opacity:.5}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="top" id="topnav">
+    <div class="brand">Kwentuhan Studio<small>Hears your real voice, powered by your Gemini key</small></div>
+    <div class="syncpill" id="syncPill" role="status"><i></i><span>Checking sync</span></div>
+  </header>
+
+  <section id="home" class="scroll">
+    <div id="setup" class="card" hidden style="margin-top:12px">
+      <h2>Connect Gemini</h2>
+      <p class="muted" style="margin-top:0">This version uses your own free Google Gemini API key, so the coach hears your actual voice and can comment on pronunciation. The key is stored only in this browser.</p>
+      <ol class="muted" style="padding-left:20px;margin:8px 0">
+        <li>Open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" style="color:var(--primary)">aistudio.google.com/apikey</a> and sign in with your personal Google account.</li>
+        <li>Tap <b>Create API key</b> and copy it.</li>
+        <li>Paste it below and tap <b>Save and test</b>.</li>
+      </ol>
+      <label for="gKey" style="font-weight:600">API key</label>
+      <input class="field" id="gKey" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste your key">
+      <label for="gModel" style="display:block;margin-top:12px;font-weight:600">Model</label>
+      <select class="field" id="gModel">
+        <option value="gemini-3.1-flash-lite">Gemini 3.1 Flash-Lite (fast, recommended)</option>
+        <option value="gemini-3.5-flash">Gemini 3.5 Flash (smarter, lower free limits)</option>
+        <option value="custom">Other model name...</option>
+      </select>
+      <input class="field" id="gModelCustom" placeholder="Model name, e.g. gemini-3.5-flash" autocapitalize="off" spellcheck="false" hidden style="margin-top:8px">
+      <div class="btnrow"><button class="ghost" id="gSave" type="button">Save and test</button><button class="ghost" id="gForget" type="button">Remove key</button><button class="ghost" id="gClose" type="button">Close</button></div>
+      <p class="hint" id="gMsg" role="status"></p>
+      <p class="hint">Privacy: on Google's free tier, your requests, including voice clips, may be used to improve Google's products. Keep anything confidential, especially work details, out of practice.</p>
+    </div>
+    <div id="voiceNotice" class="notice" hidden></div>
+    <h1 class="hello" id="hello">Let's talk.</h1>
+    <div class="goal" id="goalCard"></div>
+    <div id="resumeBox"></div>
+
+    <h2 id="scnLabel">Pick a situation</h2>
+    <div class="scenarios" role="radiogroup" aria-labelledby="scnLabel" id="scenarios"></div>
+    <div id="customWrap" class="panel" hidden>
+      <h3><label for="customText">Describe your situation</label></h3>
+      <textarea class="field" id="customText" maxlength="600" placeholder="Example: I'm explaining to a US client why their report will be one day late."></textarea>
+    </div>
+    <div id="ivWrap" class="panel" hidden>
+      <h3><label for="ivRole">Role you're interviewing for (optional)</label></h3>
+      <input class="field" id="ivRole" maxlength="120" placeholder="Example: QC Team Lead, Data Analyst">
+      <h3 id="ivTypeLbl">Question set</h3>
+      <div class="seg" id="ivType" role="group" aria-labelledby="ivTypeLbl"></div>
+      <p class="hint" id="ivTypeHint"></p>
+      <h3 id="ivDiffLbl">Difficulty</h3>
+      <div class="seg seg3" id="ivDiff" role="group" aria-labelledby="ivDiffLbl"></div>
+      <p class="hint" id="ivDiffHint"></p>
+    </div>
+
+    <h2 id="lvlLabel">Your level</h2>
+    <div class="seg seg3" id="levels" role="group" aria-labelledby="lvlLabel"></div>
+    <p class="hint" id="lvlHint"></p>
+
+    <details class="settings">
+      <summary>Goal, voice and feedback settings</summary>
+      <div class="row col"><span id="goalLbl">Daily practice goal</span><div class="seg" id="goalSeg" role="group" aria-labelledby="goalLbl"></div></div>
+      <div class="row"><label for="autoSpeak">Read coach replies aloud</label><input type="checkbox" class="switch" id="autoSpeak"></div>
+      <div class="row"><label for="handsFree">Hands-free mode<span class="hint" style="display:block;margin:2px 0 0">The mic turns on after the coach speaks and sends when you pause.</span></label><input type="checkbox" class="switch" id="handsFree"></div>
+      <div class="row col" id="pauseRow"><span id="pauseLbl">Send after I pause for</span><div class="seg" id="pauseSeg" role="group" aria-labelledby="pauseLbl"></div><p class="hint" style="margin-top:0">Longer gives you more time to think mid-sentence.</p></div>
+      <div class="row"><span>Gemini key and model</span><button class="ghost" id="gOpen" type="button">Gemini setup</button></div>
+      <input type="checkbox" id="autoSend" hidden>
+      <div class="row"><label for="showFb">Show feedback on my messages</label><input type="checkbox" class="switch" id="showFb"></div>
+      <div class="row"><label for="rate">Speaking speed <span class="muted" id="rateVal"></span></label><input type="range" id="rate" min="0.7" max="1.2" step="0.05"></div>
+      <div class="row"><label for="voice">Coach voice</label><select class="field" id="voice" style="width:55%"></select></div>
+      <div class="row"><span>Test the voice</span><button class="ghost" id="testVoice" type="button">Play sample</button></div>
+      <p class="hint" id="micSupport"></p>
+    </details>
+
+    <button class="primary" id="startBtn" type="button">Start conversation</button>
+  </section>
+
+  <section id="chat" hidden>
+    <div class="chatbar">
+      <div class="title"><b id="chatTitle"></b><span id="chatMeta"></span></div>
+      <button class="hfbtn" id="hfBtn" type="button" aria-pressed="false" aria-label="Hands-free mode" title="Hands-free mode"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M21 15a2 2 0 0 1-2 2h-1a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h3zM3 15a2 2 0 0 0 2 2h1a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H3z"/></svg></button>
+      <button class="ghost" id="endBtn" type="button">End and review</button>
+    </div>
+    <div class="log" id="log" aria-live="polite"></div>
+    <div class="listening-hint" id="listenHint"></div>
+    <div class="composer">
+      <textarea id="input" rows="1" placeholder="Tap the mic and speak, or type here" aria-label="Your message"></textarea>
+      <button class="send" id="sendBtn" type="button" aria-label="Send message" disabled>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </button>
+      <button class="mic" id="micBtn" type="button" aria-label="Start speaking">
+        <svg class="ic-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        <svg class="ic-kbd" hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <section id="summary" class="scroll" hidden></section>
+  <section id="sounds" class="scroll" hidden></section>
+  <section id="progress" class="scroll" hidden></section>
+  <section id="phrases" class="scroll" hidden></section>
+  <section id="history" class="scroll" hidden></section>
+  <nav class="tabs" id="bottomnav" aria-label="Sections">
+    <button data-go="home" aria-current="page"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4"/></svg><span>Practice</span></button>
+    <button data-go="sounds"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h2M6 8v8M10 4v16M14 7v10M18 10v4M22 12h0"/></svg><span>Sounds</span></button>
+    <button data-go="progress"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V8M18 17v-9"/></svg><span>Progress</span></button>
+    <button data-go="phrases"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span>Phrases</span></button>
+    <button data-go="history"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>History</span></button>
+  </nav>
+  <input type="file" id="restoreInput" accept=".json,application/json" hidden>
+</div>
+
+<script>
+(() => {
+"use strict";
+
+/* ================= helpers ================= */
+const $ = (s, r = document) => r.querySelector(s);
+function el(tag, attrs = {}, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") n.className = v;
+    else if (k === "text") n.textContent = v;
+    else if (k.startsWith("on") && typeof v === "function") n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v === true ? "" : String(v));
+  }
+  for (const c of kids.flat()) {
+    if (c == null || c === false) continue;
+    n.append(c instanceof Node ? c : document.createTextNode(String(c)));
+  }
+  return n;
+}
+const SVGNS = "http://www.w3.org/2000/svg";
+function svg(tag, attrs = {}, ...kids) {
+  const n = document.createElementNS(SVGNS, tag);
+  for (const [k, v] of Object.entries(attrs)) if (v != null) n.setAttribute(k, String(v));
+  for (const c of kids.flat()) if (c) n.append(c instanceof Node ? c : document.createTextNode(String(c)));
+  return n;
+}
+const store = {
+  get(k, fb) { try { const v = localStorage.getItem("kw:" + k); return v == null ? fb : JSON.parse(v); } catch { return fb; } },
+  set(k, v) { try { localStorage.setItem("kw:" + k, JSON.stringify(v)); return true; } catch { return false; } },
+  del(k) { try { localStorage.removeItem("kw:" + k); } catch {} }
+};
+const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+const dayKey = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const str = (v, max = 2000) => (typeof v === "string" ? v : v == null ? "" : String(v)).trim().slice(0, max);
+const num = (v, d = 0) => { const n = Number(v); return Number.isFinite(n) && n >= 0 ? n : d; };
+const countWords = s => (String(s).trim().match(/\S+/g) || []).length;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const fmtMin = ms => { const m = Math.round(ms / 60000); return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60} min`; };
+const clone = o => JSON.parse(JSON.stringify(o));
+
+/* ================= static data ================= */
+const SCENARIOS = [
+  { id: "free", title: "Free talk", desc: "Chat about your day, plans, hobbies, anything.",
+    role: "a friendly, curious conversation partner", goal: "relaxed everyday conversation about the learner's life and interests" },
+  { id: "smalltalk", title: "Small talk with a coworker", desc: "Coffee break chat, weekend plans, light topics.",
+    role: "a friendly coworker from another team at an international company", goal: "office small talk during a short break" },
+  { id: "meeting", title: "Team meeting update", desc: "Give a status update and answer follow-up questions.",
+    role: "a team manager running a weekly status meeting", goal: "the learner gives a clear work status update, explains blockers and answers follow-up questions" },
+  { id: "client", title: "Client call", desc: "Explain an issue clearly and politely to a client.",
+    role: "a client from the United States who is direct but fair", goal: "the learner explains a work issue, a delay or a result clearly, politely and confidently" },
+  { id: "interview", title: "Job interview", desc: "Realistic question sets, from friendly to tough panel.",
+    role: "a hiring manager", goal: "job interview practice" },
+  { id: "explain", title: "Explain your work", desc: "Describe what you do to someone new.",
+    role: "a new colleague who knows nothing about the learner's job and asks simple, curious questions", goal: "the learner explains their job, tools and processes in simple, clear English" },
+  { id: "custom", title: "My own situation", desc: "Describe any situation you want to practice.",
+    role: "the other person in the learner's situation", goal: "" }
+];
+const LEVELS = {
+  easy: { label: "Beginner", hint: "Simple words, short sentences, only the most important corrections.",
+    text: "Lower intermediate. Use simple, common words and short sentences. Be warm and encouraging. Only correct errors that matter most for being understood." },
+  mid: { label: "Intermediate", hint: "Natural everyday English. Corrects grammar and word choice.",
+    text: "Intermediate. Use natural everyday English with some common expressions. Correct clear grammar and word-choice errors." },
+  adv: { label: "Advanced", hint: "Natural professional English. Also flags phrasing that sounds unnatural.",
+    text: "Upper intermediate to advanced. Use natural, idiomatic, professional English. Be thorough: point out awkward or unnatural phrasing too, not only errors, and suggest more fluent alternatives." }
+};
+const IV_TYPES = {
+  mixed: { label: "Mixed", hint: "A realistic full interview: intro, behavioral, situational and closing questions.",
+    bank: ["Walk me through your background in two minutes.", "Why do you want this role?", "Tell me about a time you made a mistake at work. What did you change afterwards?", "A stakeholder says your output is wrong, but you believe it's correct. What do you do?", "What would your current manager say is your biggest area for improvement?", "Why should we pick you over other candidates?", "What questions do you have for us?"] },
+  behavioral: { label: "Behavioral", hint: "Tell-me-about-a-time questions. Answer with situation, task, action, result.",
+    bank: ["Tell me about a time you made a mistake that affected your team.", "Describe a time you disagreed with your manager. How did you handle it?", "Tell me about a time you delivered results with very little time or information.", "Give me an example of difficult feedback you gave a teammate.", "Tell me about your biggest professional failure.", "Describe a process you improved. What was the measurable result?", "Tell me about a time you had to learn something complex very quickly."] },
+  situational: { label: "Situational", hint: "What-would-you-do scenarios that test judgment.",
+    bank: ["You find a quality issue one hour before a deadline. Walk me through your next steps.", "Two senior stakeholders give you conflicting priorities. How do you decide?", "A teammate keeps missing deadlines and it affects your work. What do you do?", "A client is angry about an error your team made. What do you say on the call?", "You're asked to cut a process step to save time, but you think it hurts quality. What do you do?", "Your manager is unavailable and you must make a call that's above your level. What do you do?"] },
+  leadership: { label: "Leadership", hint: "Leading people, coaching, standards and tough team calls.",
+    bank: ["How do you motivate a team that's tired and behind schedule?", "Tell me about someone you coached who improved a lot. What exactly did you do?", "How do you handle an underperformer who is also your friend?", "How do you build a process or SOP that people actually follow?", "Tell me about a decision you made that your team didn't like.", "How do you measure whether your team is doing well?"] },
+  technical: { label: "Role-specific", hint: "Detailed questions about your tools, processes and how you ensure quality.",
+    bank: ["Walk me through how you would check a large dataset for errors.", "What metrics do you track to know your work is accurate?", "Explain a technical part of your job to me as if I'm not technical.", "Describe a tool or workflow you built or improved. What problem did it solve?", "How do you prioritize when everything is urgent?", "How do you document your work so others can follow it?"] },
+  pressure: { label: "Tough panel", hint: "Skeptical interviewer, curveballs and hard follow-ups.",
+    bank: ["Why should we hire you over someone with more experience?", "What's your real weakness? Not a fake one.", "Why are you leaving your current job?", "That answer was general. Give me specific numbers.", "What salary are you expecting, and why?", "Where do you see yourself in five years, honestly?", "Tell me something you've done that you're not proud of professionally."] }
+};
+const IV_DIFFS = {
+  standard: { label: "Standard", hint: "Friendly interviewer, one follow-up at most.",
+    text: "Be professional and friendly. Ask at most one follow-up per answer." },
+  tough: { label: "Tough", hint: "Pushes for specifics, numbers and what YOU did.",
+    text: "Be polite but demanding. When an answer is vague, push for specifics: numbers, results, and what the learner personally did (challenge 'we' with 'what did you do?'). Ask one or two follow-ups before moving on." },
+  brutal: { label: "Very tough", hint: "Pressure interview. Neutral, skeptical, no easy praise.",
+    text: "Run a high-pressure interview. Stay neutral and skeptical, never say 'great answer'. Challenge weak or rehearsed answers immediately, ask 'why' and 'how exactly', test claims with follow-ups, and throw in an occasional curveball question. Stay respectful, never insulting." }
+};
+const GOALS = [0, 5, 10, 15, 20, 30];
+const DEFAULTS = { level: "mid", scenario: "free", autoSpeak: true, autoSend: true, showFeedback: true, rate: 0.95, voiceName: "",
+  goal: 10, ivRole: "", ivType: "mixed", ivDiff: "tough", handsFree: false, pauseSec: 3 };
+const PAUSES = [2, 3, 4, 5];
+
+/* ================= data model ================= */
+function cleanSettings(s) {
+  s = s && typeof s === "object" ? s : {};
+  const o = Object.assign({}, DEFAULTS);
+  if (LEVELS[s.level]) o.level = s.level;
+  if (SCENARIOS.some(x => x.id === s.scenario)) o.scenario = s.scenario;
+  for (const k of ["autoSpeak", "autoSend", "showFeedback"]) if (typeof s[k] === "boolean") o[k] = s[k];
+  if (Number.isFinite(Number(s.rate))) o.rate = Math.min(1.2, Math.max(0.7, Number(s.rate)));
+  o.voiceName = str(s.voiceName, 200);
+  if (GOALS.includes(Number(s.goal))) o.goal = Number(s.goal);
+  o.ivRole = str(s.ivRole, 120);
+  if (typeof s.handsFree === "boolean") o.handsFree = s.handsFree;
+  if (PAUSES.includes(Number(s.pauseSec))) o.pauseSec = Number(s.pauseSec);
+  if (IV_TYPES[s.ivType]) o.ivType = s.ivType;
+  if (IV_DIFFS[s.ivDiff]) o.ivDiff = s.ivDiff;
+  return o;
+}
+function cleanP(r) {
+  r = r && typeof r === "object" ? r : {};
+  const out = { v: 2, settings: cleanSettings(r.settings), settingsAt: num(r.settingsAt), daily: {}, phrases: [], deleted: {}, sounds: {}, legacyWords: num(r.legacyWords), updatedAt: num(r.updatedAt) };
+  if (r.sounds && typeof r.sounds === "object") for (const [k, v] of Object.entries(r.sounds).slice(0, 50)) if (v && typeof v === "object") out.sounds[str(k, 40)] = { best: num(v.best), last: num(v.last), total: num(v.total), at: num(v.at) };
+  if (r.daily && typeof r.daily === "object") {
+    const keys = Object.keys(r.daily).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort().slice(-400);
+    for (const k of keys) { const d = r.daily[k] || {}; out.daily[k] = { ms: num(d.ms), words: num(d.words), msgs: num(d.msgs), sessions: num(d.sessions) }; }
+  }
+  if (Array.isArray(r.phrases)) out.phrases = r.phrases.filter(p => p && str(p.text)).slice(0, 300)
+    .map(p => ({ id: str(p.id, 40) || uid(), text: str(p.text, 300), meaning: str(p.meaning, 300), at: num(p.at) }));
+  if (r.deleted && typeof r.deleted === "object" && !Array.isArray(r.deleted))
+    for (const [k, v] of Object.entries(r.deleted).slice(-500)) out.deleted[str(k, 300)] = num(v);
+  return out;
+}
+function cleanH(h) {
+  if (!h || typeof h !== "object" || !str(h.id)) return null;
+  const s = h.summary && typeof h.summary === "object" ? sanitizeSummary(h.summary) : null;
+  return { id: str(h.id, 60), at: num(h.at), scenario: str(h.scenario, 80) || "Conversation", level: LEVELS[h.level] ? h.level : "mid",
+    ivType: IV_TYPES[h.ivType] ? h.ivType : null, ivDiff: IV_DIFFS[h.ivDiff] ? h.ivDiff : null,
+    ms: num(h.ms, num(h.minutes) * 60000), words: num(h.words), turns: num(h.turns), summary: s, summaryError: s ? "" : str(h.summaryError, 300) };
+}
+const pkey = t => str(t, 300).toLowerCase().replace(/[^a-z0-9' ]/g, "").replace(/\s+/g, " ").trim();
+function mergeP(a, b) {
+  const out = cleanP({});
+  const sNewer = b.settingsAt > a.settingsAt ? b : a;
+  out.settings = Object.assign({}, sNewer.settings); out.settingsAt = Math.max(a.settingsAt, b.settingsAt);
+  for (const k of new Set([...Object.keys(a.daily), ...Object.keys(b.daily)])) {
+    const x = a.daily[k] || {}, y = b.daily[k] || {};
+    out.daily[k] = { ms: Math.max(num(x.ms), num(y.ms)), words: Math.max(num(x.words), num(y.words)), msgs: Math.max(num(x.msgs), num(y.msgs)), sessions: Math.max(num(x.sessions), num(y.sessions)) };
+  }
+  const del = Object.assign({}, a.deleted);
+  for (const [k, v] of Object.entries(b.deleted)) del[k] = Math.max(num(del[k]), v);
+  const map = new Map();
+  for (const p of [...a.phrases, ...b.phrases]) { const k = pkey(p.text); if (!k) continue; const cur = map.get(k); if (!cur || p.at > cur.at) map.set(k, p); }
+  out.phrases = [...map.values()].filter(p => !(del[pkey(p.text)] > p.at)).sort((x, y) => y.at - x.at).slice(0, 300);
+  const keepDel = Object.entries(del).sort((x, y) => y[1] - x[1]).slice(0, 500);
+  out.deleted = Object.fromEntries(keepDel);
+  for (const k of new Set([...Object.keys(a.sounds || {}), ...Object.keys(b.sounds || {})])) {
+    const x = (a.sounds || {})[k], y = (b.sounds || {})[k];
+    const newer = !x ? y : !y ? x : (y.at > x.at ? y : x);
+    out.sounds[k] = Object.assign({}, newer, { best: Math.max(num(x && x.best), num(y && y.best)) });
+  }
+  out.legacyWords = Math.max(a.legacyWords, b.legacyWords);
+  out.updatedAt = Math.max(a.updatedAt, b.updatedAt);
+  const dk = Object.keys(out.daily).sort().slice(-400); const d2 = {}; for (const k of dk) d2[k] = out.daily[k]; out.daily = d2;
+  return out;
+}
+function mergeH(a, b) {
+  const map = new Map();
+  for (const h of [...a, ...b]) { if (!h) continue; const cur = map.get(h.id); if (!cur || (!cur.summary && h.summary)) map.set(h.id, h); }
+  return [...map.values()].sort((x, y) => y.at - x.at).slice(0, 150);
+}
+
+/* ---- load local with v1 migration ---- */
+let P, H;
+(function loadLocal() {
+  const p2 = store.get("p2", null);
+  if (p2) { P = cleanP(p2); H = (store.get("h2", []) || []).map(cleanH).filter(Boolean); return; }
+  const legacy = { settings: store.get("settings", {}), phrases: (store.get("phrases", []) || []).map(p => ({ ...p, at: num(p.at, Date.now()) })),
+    legacyWords: store.get("totalWords", 0), daily: {} };
+  for (const d of store.get("days", []) || []) legacy.daily[d] = { ms: 0, words: 0, msgs: 1, sessions: 0 };
+  P = cleanP(legacy); P.settingsAt = 1; P.updatedAt = Date.now();
+  H = (store.get("history", []) || []).map(cleanH).filter(Boolean);
+  store.set("p2", P); store.set("h2", H);
+})();
+let settings = P.settings;
+
+function today() { const k = dayKey(); return P.daily[k] || (P.daily[k] = { ms: 0, words: 0, msgs: 0, sessions: 0 }); }
+function persistP(settingsChanged = false) {
+  P.settings = settings;
+  if (settingsChanged) P.settingsAt = Date.now();
+  P.updatedAt = Date.now();
+  store.set("p2", P);
+  remote.queueProgress();
+}
+const saveSettings = () => persistP(true);
+function addDaily(delta) {
+  const d = today();
+  for (const k of ["ms", "words", "msgs", "sessions"]) d[k] = num(d[k]) + num(delta[k]);
+  persistP();
+}
+
+/* ================= local storage only (no cloud sync outside Claude) ================= */
+const remote = {
+  refs: null, state: "local", msg: "",
+  setState(st) {
+    this.state = st;
+    const pill = $("#syncPill");
+    pill.className = "syncpill " + st;
+    pill.querySelector("span").textContent = "On this device";
+  },
+  init() { this.setState("local"); },
+  pull() {}, queueProgress() {}, pushSession() {}, pushActive() {}
+};
+
+/* ================= Gemini engine ================= */
+const DEFAULT_MODEL = "gemini-3.1-flash-lite";
+const getKey = () => str(store.get("gkey", ""), 200);
+const getModel = () => str(store.get("gmodel", DEFAULT_MODEL), 100) || DEFAULT_MODEL;
+function toContents(input) {
+  const raw = typeof input === "string" ? [{ role: "user", content: input }] : input;
+  const out = [];
+  for (const t of raw) {
+    const role = t.role === "assistant" ? "model" : "user";
+    const parts = typeof t.content === "string" ? [{ text: t.content }] : t.content;
+    const prev = out[out.length - 1];
+    if (prev && prev.role === role) prev.parts.push(...parts);
+    else out.push({ role, parts: [...parts] });
+  }
+  return out;
+}
+async function geminiCall(input, { signal, json = false } = {}) {
+  const key = getKey();
+  if (!key) throw { code: "no_key" };
+  const body = { contents: toContents(input), generationConfig: Object.assign({ temperature: 0.7 }, json ? { responseMimeType: "application/json" } : {}) };
+  let res;
+  try {
+    res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(getModel())}:generateContent`, {
+      method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": key }, body: JSON.stringify(body), signal });
+  } catch (e) { throw { code: e && e.name === "AbortError" ? "cancelled" : "network" }; }
+  let data = null;
+  try { data = await res.json(); } catch {}
+  if (!res.ok) {
+    const msg = str(data && data.error && data.error.message, 300);
+    if (res.status === 400 && /api key/i.test(msg)) throw { code: "bad_key" };
+    if (res.status === 401 || res.status === 403) throw { code: "bad_key", detail: msg };
+    if (res.status === 404) throw { code: "bad_model" };
+    if (res.status === 429) throw { code: "rate_limited" };
+    if (res.status >= 500) throw { code: "unavailable" };
+    throw { code: "api_error", detail: msg };
+  }
+  if (data && data.promptFeedback && data.promptFeedback.blockReason) throw { code: "refused" };
+  const cand = data && data.candidates && data.candidates[0];
+  if (!cand) throw { code: "empty_completion" };
+  if (/SAFETY|PROHIBITED|BLOCKLIST/.test(cand.finishReason || "")) throw { code: "refused" };
+  const text = ((cand.content && cand.content.parts) || []).filter(p => typeof p.text === "string" && !p.thought).map(p => p.text).join("");
+  if (!text.trim()) throw { code: "empty_completion" };
+  return text;
+}
+const sample = async (input, opts = {}) => {
+  const text = await geminiCall(input, opts);
+  if (opts.onText) try { opts.onText({ text }); } catch {}
+  return { text };
+};
+sample.json = async (input, opts = {}) => {
+  const text = await geminiCall(input, Object.assign({}, opts, { json: true }));
+  const clean = text.replace(/^\s*```(?:json)?/i, "").replace(/```\s*$/, "").trim();
+  try { return JSON.parse(clean); } catch { throw { code: "invalid_json", text }; }
+};
+const sampleReady = true;
+const samplePromise = Promise.resolve(sample);
+const downloads = {
+  async save({ filename, data }) {
+    const blob = new Blob([data], { type: /\.csv$/i.test(filename) ? "text/csv;charset=utf-8" : "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = filename; a.rel = "noopener";
+    document.body.append(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+    return { status: "saved" };
+  }
+};
+const ERR_COPY = {
+  no_key: "Add your Gemini API key first. Open Gemini setup on the Practice tab.",
+  bad_key: "Gemini rejected the API key. Check it in Gemini setup.",
+  bad_model: "That model name isn't available for your key. Pick another model in Gemini setup.",
+  rate_limited: "You've hit Gemini's free limit for now. Wait a minute, then try again.",
+  unavailable: "Gemini is busy right now. Try again in a moment.",
+  network: "No connection to Gemini. Check your internet and try again.",
+  refused: "Gemini couldn't answer that. Try saying it a different way.",
+  empty_completion: "Gemini didn't answer. Try again.",
+  invalid_json: "The coach's reply came back garbled. Try again.",
+  no_speech: "I couldn't hear any speech in that recording. Try again a little closer to the mic.",
+  api_error: "Gemini returned an error. Try again."
+};
+const FATAL = new Set(["no_key", "bad_key", "bad_model"]);
+const errCopy = e => (ERR_COPY[e && e.code] || "Couldn't reach Gemini. Check your connection and try again.") + (e && e.code === "api_error" && e.detail ? ` (${e.detail})` : "");
+
+/* ================= speech ================= */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const listener = {
+  rec: null, owner: null,
+  get active() { return !!this.rec; },
+  start({ onUpdate, onDone, onError }) {
+    if (!SR) { onError && onError("unsupported"); return false; }
+    this.stop(true); tts.cancel();
+    let rec;
+    try { rec = new SR(); } catch { onError && onError("unsupported"); return false; }
+    rec.lang = "en-US"; rec.interimResults = true; rec.continuous = true; rec.maxAlternatives = 1;
+    let all = "";
+    rec.onresult = e => {
+      let fin = "", interim = "";
+      for (let i = 0; i < e.results.length; i++) { const r = e.results[i]; if (r.isFinal) fin += r[0].transcript + " "; else interim += r[0].transcript + " "; }
+      all = (fin + interim).replace(/\s+/g, " ").trim();
+      onUpdate && onUpdate(all);
+    };
+    rec.onerror = e => { if (e.error !== "aborted") onError && onError(e.error || "unknown"); };
+    rec.onend = () => { const c = !!rec._cancel, q = !!rec._req; if (this.rec === rec) this.rec = null; onDone && onDone(all, c, q); };
+    try { rec.start(); this.rec = rec; return true; } catch { onError && onError("start-failed"); return false; }
+  },
+  stop(cancel = false) { const r = this.rec; if (!r) return; r._cancel = cancel; r._req = true; try { cancel ? r.abort() : r.stop(); } catch { this.rec = null; } }
+};
+const MIC_ERR = {
+  "not-allowed": "Microphone access is blocked here. Use your keyboard's mic key to dictate, or type your message.",
+  "service-not-allowed": "Voice input isn't allowed in this view. Use your keyboard's mic key to dictate, or type.",
+  "no-speech": "I didn't hear anything. Tap the mic and try again.",
+  "audio-capture": "No microphone was found. Check your mic, or type your message.",
+  "network": "Voice input needs an internet connection. Try again or type.",
+  "unsupported": "Voice input isn't supported in this browser. Use your keyboard's mic key to dictate, or type.",
+  "start-failed": "Couldn't start the microphone. Try again."
+};
+const tts = {
+  ok: "speechSynthesis" in window && typeof window.SpeechSynthesisUtterance === "function",
+  voices: [],
+  load() {
+    if (!this.ok) return;
+    const set = () => { try { this.voices = speechSynthesis.getVoices().filter(v => /^en([-_]|$)/i.test(v.lang)); } catch { this.voices = []; } renderVoices(); };
+    set();
+    try { speechSynthesis.addEventListener("voiceschanged", set); } catch { speechSynthesis.onvoiceschanged = set; }
+  },
+  pick() {
+    const v = this.voices;
+    return v.find(x => x.name === settings.voiceName)
+      || v.find(x => /en-US/i.test(x.lang) && /natural|neural|google|samantha|aria|jenny|ava/i.test(x.name))
+      || v.find(x => /en-US/i.test(x.lang)) || v[0] || null;
+  },
+  seq: 0,
+  speak(text, onend) {
+    const my = ++this.seq;
+    const done = () => { if (my === this.seq) { this.seq++; onend && onend(); } };
+    if (!this.ok || !text) { done(); return; }
+    try {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = this.pick();
+      if (v) { u.voice = v; u.lang = v.lang; } else u.lang = "en-US";
+      u.rate = settings.rate;
+      u.onend = done; u.onerror = done;
+      speechSynthesis.speak(u);
+    } catch { done(); }
+  },
+  cancel() { this.seq++; if (this.ok) try { speechSynthesis.cancel(); } catch {} }
+};
+
+/* ================= word comparison ================= */
+const words = s => str(s, 4000).split(/\s+/).filter(Boolean);
+const norm = w => w.toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9']/g, "");
+function matchMask(a, b) {
+  const A = a.slice(0, 200).map(norm), B = b.slice(0, 200).map(norm);
+  const n = A.length, m = B.length;
+  const dp = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+    dp[i][j] = (A[i] && A[i] === B[j]) ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  const mask = new Array(b.length).fill(false);
+  let i = 0, j = 0;
+  while (i < n && j < m) {
+    if (A[i] && A[i] === B[j]) { mask[j] = true; i++; j++; }
+    else if (dp[i + 1][j] >= dp[i][j + 1]) i++; else j++;
+  }
+  for (let k = 0; k < b.length; k++) if (!norm(b[k])) mask[k] = true;
+  return mask;
+}
+function diffNode(original, corrected) {
+  const b = words(corrected), mask = matchMask(words(original), b);
+  const frag = document.createDocumentFragment();
+  b.forEach((w, k) => { if (k) frag.append(" "); frag.append(mask[k] ? w : el("mark", { text: w })); });
+  return frag;
+}
+
+/* ================= prompts ================= */
+let session = null, busy = false, ctl = null, metaTimer = null, goalCelebrated = "";
+const scenarioOf = s => SCENARIOS.find(x => x.id === s.scenarioId) || SCENARIOS[0];
+const isInterview = s => s && s.scenarioId === "interview";
+function rulesPrompt(s) {
+  const sc = scenarioOf(s);
+  const lines = [
+    "You are an English conversation coach inside a speaking-practice app for a Filipino professional who wants to speak English more fluently and confidently.",
+    `Learner level: ${LEVELS[s.level].text}`
+  ];
+  if (isInterview(s)) {
+    const iv = s.iv || {};
+    const t = IV_TYPES[iv.type] || IV_TYPES.mixed, d = IV_DIFFS[iv.diff] || IV_DIFFS.tough;
+    lines.push(
+      `Your role: a hiring manager interviewing the learner${iv.role ? ` for a ${iv.role} position` : ""}.`,
+      `Question set: ${t.label}. ${t.hint}`,
+      "Draw from and adapt these example questions, in your own order and wording, tailored to the role. Mix in your own realistic questions too:",
+      ...t.bank.map(q => "- " + q),
+      `Interviewer style: ${d.text}`,
+      "Ask ONE question at a time. Never answer for the learner. Do not repeat questions already asked in this conversation."
+    );
+  } else {
+    lines.push(`Your role in the conversation: ${sc.role}.`,
+      sc.id === "custom" ? `The learner wants to practice this situation: "${str(s.custom, 600)}"` : `Scenario: ${sc.goal}.`);
+  }
+  lines.push(
+    "The learner usually speaks through speech-to-text, so ignore missing punctuation and capitalization. If a word looks like a speech-to-text mishearing, assume they meant the sensible word; mention a possible pronunciation issue only when a word was clearly heard as a different real word.",
+    "",
+    "For every learner message, respond with ONLY one JSON object, no other text:",
+    '{"reply": string, "feedback": {"status": "great" | "minor" | "fix", "corrected": string, "natural": string, "notes": [string]}, "phrase": {"text": string, "meaning": string} | null' + (isInterview(s) ? ', "answer": {"score": 1-5, "tip": string} | null' : "") + "}",
+    "",
+    "Rules:",
+    "- reply: stay in character. 1 to 3 short sentences of natural spoken English, then a question or prompt that keeps the conversation going. Never teach or correct inside reply.",
+    "- feedback.corrected: the learner's message with grammar and word-choice errors fixed, keeping their meaning and their own words where possible. Identical to their message if nothing needs fixing.",
+    "- feedback.natural: how a fluent speaker would naturally say the same thing in this situation. Keep it about the same length.",
+    "- feedback.notes: 0 to 3 very short explanations of the most useful language fixes, in plain language, no grammar jargon. Empty array if status is great.",
+    "- feedback.status: great = correct and natural, minor = small slips, fix = errors that hurt clarity.",
+    "- phrase: one useful expression the learner could use for what they were trying to say, with a short meaning. null if nothing useful."
+  );
+  if (isInterview(s)) lines.push(
+    "- answer: when the learner's message answers an interview question, rate the CONTENT as an interviewer would (1 weak, 3 acceptable, 5 excellent) for structure (situation, task, action, result for behavioral questions), specificity, numbers, personal ownership, relevance and confident wording. tip: one concrete sentence on how to make this answer stronger. Be honest, don't inflate scores. null for small talk or questions the learner asks."
+  );
+  lines.push("- If the learner's turn is audio, ALSO include \"transcript\": exactly what they said, word for word, keeping their grammar mistakes (never correct it here), and \"pronunciation\": {\"clarity\": 1-5, \"issues\": [{\"word\": string, \"tip\": string}]}. Only list words you are confident were mispronounced in a way a listener could misunderstand, at most 3. A Filipino accent is fine when it's clear. Each tip is one simple sentence about mouth, lips or tongue. Never invent issues; use an empty array when speech is clear. Base all other feedback on the transcript.");
+  lines.push("- Never use em dashes. Use commas instead.");
+  return lines.join("\n");
+}
+function modelInput(s, audio = null) {
+  const turns = [{ role: "user", content: rulesPrompt(s) }];
+  for (const m of s.messages.slice(-24)) {
+    if (m.who === "ai") { if (m.text) turns.push({ role: "assistant", content: m.text }); }
+    else if (m.text && !m.pending) turns.push({ role: "user", content: `Learner said: "${m.text}"` });
+  }
+  if (audio) turns.push({ role: "user", content: [
+    { text: "The learner's turn is the attached audio recording. Include \"transcript\" and \"pronunciation\" in your JSON." },
+    { inlineData: { mimeType: "audio/wav", data: audio } }] });
+  const last = turns[turns.length - 1];
+  if (last.role !== "user" || turns.length < 2) return null;
+  if (typeof last.content === "string") turns[turns.length - 1] = { role: "user", content: last.content + "\n\n(Respond with the JSON object only.)" };
+  else last.content.push({ text: "(Respond with the JSON object only.)" });
+  return turns;
+}
+function saveActive() {
+  if (!session) return;
+  session.updatedAt = Date.now();
+  if (session.messages.length > 80) session.messages = session.messages.slice(-80);
+  store.set("active", Object.assign({}, session, { messages: session.messages.map(m => { const c = Object.assign({}, m); delete c.audioUrl; delete c._audio; return c; }) }));
+}
+function clearActive() { store.del("active"); remote.pushActive(null); }
+
+/* ================= navigation ================= */
+const SCREENS = ["home", "chat", "summary", "sounds", "progress", "phrases", "history"];
+let current = "home";
+function show(id) {
+  current = id;
+  for (const s of SCREENS) $("#" + s).hidden = s !== id;
+  $("#topnav").hidden = id === "chat"; $("#bottomnav").hidden = id === "chat";
+  document.querySelectorAll(".tabs button").forEach(b => { if (b.dataset.go === id) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  refreshScreen();
+}
+function refreshScreen() {
+  if (current === "home") renderHome();
+  else if (current === "sounds") renderSounds();
+  else if (current === "progress") renderProgress();
+  else if (current === "phrases") renderPhrases();
+  else if (current === "history") renderHistory();
+}
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+  if (listener.active) listener.stop(true);
+  if (recorder.active) finishRecording("cancel", true);
+  tts.cancel(); show(b.dataset.go);
+}));
+
+/* ================= stats ================= */
+function practicedDays() { return Object.keys(P.daily).filter(k => num(P.daily[k].msgs) > 0 || num(P.daily[k].ms) > 0).sort(); }
+function streaks() {
+  const set = new Set(practicedDays());
+  let cur = 0; const d = new Date();
+  if (!set.has(dayKey(d))) d.setDate(d.getDate() - 1);
+  while (set.has(dayKey(d))) { cur++; d.setDate(d.getDate() - 1); }
+  let best = 0, run = 0, prev = null;
+  for (const k of [...set].sort()) {
+    const t = new Date(k + "T12:00:00");
+    run = prev && Math.round((t - prev) / 86400000) === 1 ? run + 1 : 1;
+    best = Math.max(best, run); prev = t;
+  }
+  return { cur, best };
+}
+function totals() {
+  let ms = 0, w = P.legacyWords, msgs = 0, goalDays = 0;
+  const goalMs = settings.goal * 60000;
+  for (const d of Object.values(P.daily)) { ms += num(d.ms); w += num(d.words); msgs += num(d.msgs); if (goalMs && num(d.ms) >= goalMs) goalDays++; }
+  return { ms, words: w, msgs, goalDays, sessions: H.length };
+}
+
+/* ================= home ================= */
+function ring(fraction, size = 64) {
+  const r = (size - 10) / 2, c = 2 * Math.PI * r, f = Math.max(0, Math.min(1, fraction));
+  return svg("svg", { width: size, height: size, viewBox: `0 0 ${size} ${size}`, "aria-hidden": "true" },
+    svg("circle", { cx: size / 2, cy: size / 2, r, fill: "none", stroke: "var(--line)", "stroke-width": 9 }),
+    svg("circle", { cx: size / 2, cy: size / 2, r, fill: "none", stroke: f >= 1 ? "var(--accent)" : "var(--primary)", "stroke-width": 9, "stroke-linecap": "round",
+      "stroke-dasharray": `${c * f} ${c}`, transform: `rotate(-90 ${size / 2} ${size / 2})` }));
+}
+function renderGoal() {
+  const card = $("#goalCard"); card.replaceChildren();
+  const ms = num(today().ms), { cur } = streaks();
+  if (!settings.goal) {
+    card.append(ring(0), el("div", {}, el("b", { text: `Today: ${fmtMin(ms)} practiced` }),
+      el("span", { class: "muted", text: cur ? `${cur}-day streak. Set a daily goal in settings below.` : "Set a daily goal in settings below to build a habit." })));
+    return;
+  }
+  const goalMs = settings.goal * 60000, left = Math.max(0, Math.ceil((goalMs - ms) / 60000));
+  card.append(ring(ms / goalMs), el("div", {},
+    el("b", { text: left ? `${Math.floor(ms / 60000)} of ${settings.goal} min today` : `Goal reached: ${fmtMin(ms)} today` }),
+    el("span", { class: "muted", text: (left ? `${left} more ${left === 1 ? "minute" : "minutes"} to hit today's goal.` : "Nice. Anything extra is a bonus.") + (cur ? ` ${cur}-day streak.` : "") })));
+}
+function renderHome() {
+  const h = new Date().getHours();
+  $("#hello").textContent = h < 5 ? "Late shift? Let's talk." : h < 12 ? "Good morning. Let's talk." : h < 18 ? "Good afternoon. Let's talk." : "Good evening. Let's talk.";
+  renderGoal();
+
+  const box = $("#resumeBox"); box.replaceChildren();
+  const active = store.get("active", null);
+  if (active && Array.isArray(active.messages) && active.messages.some(m => m.who === "me")) {
+    box.append(el("div", { class: "resume" },
+      el("div", {}, el("b", { text: "Unfinished conversation" }), el("div", { class: "muted", text: scenarioOf(active).title })),
+      el("button", { class: "ghost", type: "button", text: "Resume", onclick: () => resumeSession(active) }),
+      el("button", { class: "ghost", type: "button", text: "Discard", onclick: () => { clearActive(); renderHome(); } })));
+  }
+
+  const wrap = $("#scenarios"); wrap.replaceChildren();
+  for (const sc of SCENARIOS) wrap.append(el("button", { class: "scn", type: "button", role: "radio", "aria-checked": String(settings.scenario === sc.id),
+    onclick: () => { settings.scenario = sc.id; saveSettings(); renderHome(); } },
+    el("i", { class: "dot", "aria-hidden": "true" }), el("div", {}, el("b", { text: sc.title }), el("span", { text: sc.desc }))));
+  $("#customWrap").hidden = settings.scenario !== "custom";
+  $("#ivWrap").hidden = settings.scenario !== "interview";
+  if (document.activeElement !== $("#ivRole")) $("#ivRole").value = settings.ivRole;
+  segment("#ivType", IV_TYPES, settings.ivType, k => { settings.ivType = k; saveSettings(); renderHome(); });
+  $("#ivTypeHint").textContent = IV_TYPES[settings.ivType].hint;
+  segment("#ivDiff", IV_DIFFS, settings.ivDiff, k => { settings.ivDiff = k; saveSettings(); renderHome(); });
+  $("#ivDiffHint").textContent = IV_DIFFS[settings.ivDiff].hint;
+
+  segment("#levels", LEVELS, settings.level, k => { settings.level = k; saveSettings(); renderHome(); });
+  $("#lvlHint").textContent = LEVELS[settings.level].hint;
+  const gs = $("#goalSeg"); gs.replaceChildren();
+  for (const g of GOALS) gs.append(el("button", { type: "button", "aria-pressed": String(settings.goal === g), text: g ? `${g} min` : "Off",
+    onclick: () => { settings.goal = g; saveSettings(); renderHome(); } }));
+
+  $("#autoSpeak").checked = settings.autoSpeak;
+  $("#autoSend").checked = settings.autoSend;
+  $("#handsFree").checked = settings.handsFree;
+  $("#handsFree").disabled = micBlocked;
+  $("#pauseRow").hidden = !settings.handsFree;
+  const ps = $("#pauseSeg"); ps.replaceChildren();
+  for (const v of PAUSES) ps.append(el("button", { type: "button", "aria-pressed": String(settings.pauseSec === v), text: `${v} sec`,
+    onclick: () => { settings.pauseSec = v; saveSettings(); renderHome(); } }));
+  $("#showFb").checked = settings.showFeedback;
+  $("#rate").value = settings.rate;
+  $("#rateVal").textContent = `(${Number(settings.rate).toFixed(2)}x)`;
+  $("#micSupport").textContent = SR ? "" : "Voice input isn't available in this browser. You can still use your phone keyboard's mic key to dictate.";
+  renderVoices();
+  updateAvailability();
+  const vn = $("#voiceNotice");
+  const noTts = !tts.ok, noMic = micBlocked;
+  vn.hidden = !(noTts || noMic);
+  if (noTts || noMic) {
+    vn.replaceChildren(
+      el("b", { text: noTts && noMic ? "Voice isn't supported in this app view." : noTts ? "The coach can't speak in this app view." : "The mic isn't supported in this app view." }),
+      el("div", { text: noTts ? "This browser has no speech engine, so the coach can't talk. Open this page in Chrome, Edge or Safari."
+        : "The microphone is blocked for this page, so you'll speak through your keyboard's mic key instead. Everything else works the same." }),
+      noMic ? el("div", { class: "btnrow" }, el("button", { class: "ghost", type: "button", text: "Try the app mic again", onclick: () => { setMicBlocked(false); renderHome(); } })) : null,
+      !noMic ? el("div", { class: "muted", style: "margin-top:6px", text: "You can still practice with the mic, but replies will be text only." }) : null);
+  }
+}
+function segment(sel, defs, cur, onPick) {
+  const box = $(sel); box.replaceChildren();
+  for (const [k, v] of Object.entries(defs)) box.append(el("button", { type: "button", "aria-pressed": String(cur === k), text: v.label, onclick: () => onPick(k) }));
+}
+function renderVoices() {
+  const sel = $("#voice"); if (!sel) return;
+  sel.replaceChildren();
+  if (!tts.ok || !tts.voices.length) { sel.append(el("option", { value: "", text: tts.ok ? "Default voice" : "Not available" })); sel.disabled = !tts.ok; return; }
+  sel.disabled = false;
+  const cur = tts.pick();
+  for (const v of tts.voices) sel.append(el("option", { value: v.name, text: `${v.name} (${v.lang})`, selected: cur && cur.name === v.name }));
+}
+let setupOpen = false;
+function updateAvailability() {
+  const has = !!getKey();
+  $("#setup").hidden = has && !setupOpen;
+  $("#startBtn").disabled = !has;
+  $("#startBtn").textContent = has ? "Start conversation" : "Connect Gemini to start";
+  if (!$("#setup").hidden) {
+    if (document.activeElement !== $("#gKey")) $("#gKey").value = getKey();
+    const m = getModel(), known = [...$("#gModel").options].some(o => o.value === m);
+    $("#gModel").value = known ? m : "custom";
+    $("#gModelCustom").hidden = known;
+    if (!known && document.activeElement !== $("#gModelCustom")) $("#gModelCustom").value = m;
+  }
+}
+function openSetup() { setupOpen = true; show("home"); updateAvailability(); setTimeout(() => { $("#setup").scrollIntoView({ block: "start" }); $("#gKey").focus(); }, 50); }
+$("#gOpen").addEventListener("click", openSetup);
+$("#gClose").addEventListener("click", () => { setupOpen = false; $("#gMsg").textContent = ""; updateAvailability(); });
+$("#gModel").addEventListener("change", e => { $("#gModelCustom").hidden = e.target.value !== "custom"; if (e.target.value === "custom") $("#gModelCustom").focus(); });
+$("#gForget").addEventListener("click", () => { store.del("gkey"); $("#gKey").value = ""; $("#gMsg").textContent = "Key removed from this browser."; updateAvailability(); });
+$("#gSave").addEventListener("click", async () => {
+  const key = str($("#gKey").value, 200).replace(/\s+/g, "");
+  const model = $("#gModel").value === "custom" ? str($("#gModelCustom").value, 100) : $("#gModel").value;
+  const msg = $("#gMsg"), btn = $("#gSave");
+  if (!key) { msg.textContent = "Paste your API key first."; $("#gKey").focus(); return; }
+  if (!model) { msg.textContent = "Type a model name."; $("#gModelCustom").focus(); return; }
+  const prevKey = getKey(), prevModel = getModel();
+  store.set("gkey", key); store.set("gmodel", model);
+  btn.disabled = true; msg.textContent = "Testing...";
+  try {
+    await sample("Reply with just the word OK.");
+    msg.textContent = `Connected. ${model} is working.`;
+    setupOpen = false; setTimeout(() => { msg.textContent = ""; updateAvailability(); }, 1500);
+  } catch (e) {
+    if (e && (e.code === "bad_key" || e.code === "bad_model")) { if (prevKey) store.set("gkey", prevKey); else store.del("gkey"); store.set("gmodel", prevModel); }
+    msg.textContent = errCopy(e);
+  } finally { btn.disabled = false; updateAvailability(); }
+});
+$("#autoSpeak").addEventListener("change", e => { settings.autoSpeak = e.target.checked; saveSettings(); });
+$("#autoSend").addEventListener("change", e => { settings.autoSend = e.target.checked; saveSettings(); });
+$("#handsFree").addEventListener("change", e => { settings.handsFree = e.target.checked; saveSettings(); renderHome(); });
+$("#showFb").addEventListener("change", e => { settings.showFeedback = e.target.checked; saveSettings(); });
+let rateTimer;
+$("#rate").addEventListener("input", e => { settings.rate = Number(e.target.value) || 0.95; $("#rateVal").textContent = `(${settings.rate.toFixed(2)}x)`; clearTimeout(rateTimer); rateTimer = setTimeout(saveSettings, 500); });
+$("#voice").addEventListener("change", e => { settings.voiceName = e.target.value; saveSettings(); });
+$("#testVoice").addEventListener("click", () => tts.speak("Hi! I'm your English coach. Let's have a nice conversation."));
+let roleTimer;
+$("#ivRole").addEventListener("input", e => { settings.ivRole = str(e.target.value, 120); clearTimeout(roleTimer); roleTimer = setTimeout(saveSettings, 600); });
+
+/* ================= chat ================= */
+$("#startBtn").addEventListener("click", async () => {
+  if (!getKey()) { openSetup(); return; }
+  if (settings.scenario === "custom" && !str($("#customText").value)) {
+    $("#customText").focus(); $("#customText").placeholder = "Describe the situation first, then tap Start."; return;
+  }
+  clearActive();
+  const now = Date.now();
+  session = { id: uid(), scenarioId: settings.scenario, custom: str($("#customText").value, 600), level: settings.level,
+    iv: settings.scenario === "interview" ? { role: settings.ivRole, type: settings.ivType, diff: settings.ivDiff } : null,
+    startedAt: now, lastAt: now, activeMs: 0, updatedAt: now, messages: [] };
+  openChat();
+  await opening();
+});
+function resumeSession(s) {
+  if (!getKey()) { openSetup(); return; }
+  session = s;
+  if (!LEVELS[session.level]) session.level = "mid";
+  session.messages = (session.messages || []).filter(m => m && (m.who === "ai" || m.who === "me") && m.text).map(m => Object.assign(m, { pending: false }));
+  session.lastAt = Date.now(); session.activeMs = num(session.activeMs);
+  openChat();
+  const lastAi = [...session.messages].reverse().find(m => m.who === "ai");
+  if (lastAi) replyOut(lastAi.text);
+}
+function chatTitle(s) {
+  const sc = scenarioOf(s);
+  if (!isInterview(s)) return sc.title;
+  const iv = s.iv || {};
+  return `Interview: ${(IV_TYPES[iv.type] || IV_TYPES.mixed).label}, ${(IV_DIFFS[iv.diff] || IV_DIFFS.tough).label.toLowerCase()}`;
+}
+function openChat() {
+  show("chat");
+  $("#chatTitle").textContent = chatTitle(session);
+  $("#listenHint").textContent = tts.ok ? "" : "Replies are text only in this browser. Use Chrome, Edge or Safari to hear the coach.";
+  applyMicMode();
+  updateMeta();
+  clearInterval(metaTimer); metaTimer = setInterval(updateMeta, 15000);
+  renderLog();
+  $("#input").value = ""; autoGrow(); syncSend();
+}
+function updateMeta() {
+  if (!session) return;
+  const w = session.messages.filter(m => m.who === "me").reduce((a, m) => a + countWords(m.text), 0);
+  const tm = Math.floor(num(today().ms) / 60000);
+  $("#chatMeta").textContent = `${LEVELS[session.level].label}, ${w} words` + (settings.goal ? `, today ${tm} of ${settings.goal} min` : `, today ${tm} min`);
+  syncHfBtn();
+}
+async function opening() {
+  const msg = { id: uid(), who: "ai", text: "", pending: true };
+  session.messages.push(msg); renderLog(); setBusy(true);
+  ctl = new AbortController();
+  try {
+    let prompt = rulesPrompt(session) + "\n\nStart the conversation now. This first time only, output just your opening line as plain spoken text: 1 or 2 short sentences in character, ending with a question. No JSON.";
+    if (isInterview(session)) prompt += session.iv && session.iv.role ? " Greet them briefly and ask your first interview question." : " Greet them and ask what role they're interviewing for.";
+    const { text } = await sample(prompt, { modelTier: "quick", cache: false, signal: ctl.signal, onText: ({ text }) => { msg.text = text; updateBubble(msg); } });
+    msg.text = cleanSpoken(text); msg.pending = false;
+    renderLog(); saveActive();
+    replyOut(msg.text);
+  } catch (e) {
+    if (e && e.code === "cancelled") return;
+    msg.pending = false;
+    msg.text = fallbackOpener(session);
+    msg.note = FATAL.has(e && e.code) ? errCopy(e) : "";
+    renderLog(); saveActive();
+    if (!msg.note) replyOut(msg.text);
+  } finally { setBusy(false); }
+}
+function fallbackOpener(s) {
+  if (isInterview(s)) return s.iv && s.iv.role ? `Thanks for coming in. Let's start: walk me through your background and why you want this ${s.iv.role} role.` : "Hi, thanks for coming in today. What role are you interviewing for?";
+  return ({ smalltalk: "Hey! How's your week going so far?", meeting: "Okay, let's start. Can you give us a quick update on what you've been working on this week?",
+    client: "Hi, thanks for joining the call. So, what's the latest on our request?", explain: "So I'm new here. What exactly do you do in your job?",
+    custom: "Okay, let's begin. How would you like to start?" })[s.scenarioId] || "Hi! How has your day been so far?";
+}
+const cleanSpoken = t => str(t, 1200).replace(/^["']|["']$/g, "").replace(/\s*\u2014\s*/g, ", ");
+
+async function send(text) {
+  text = str(text, 1500);
+  if (!text || busy || !session) return;
+  if (listener.active) listener.stop(true);
+  tts.cancel();
+  const me = { id: uid(), who: "me", text, feedback: null };
+  session.messages.push(me);
+  $("#input").value = ""; autoGrow(); syncSend();
+  saveActive();
+  await runTurn(me);
+}
+function trackTurn(me) {
+  if (me.counted) return;
+  me.counted = true;
+  const now = Date.now();
+  const gap = Math.min(Math.max(0, now - num(session.lastAt, now)), 180000);
+  session.lastAt = now; session.activeMs = num(session.activeMs) + gap;
+  addDaily({ ms: gap, words: countWords(me.text), msgs: 1 });
+  if (settings.goal && num(today().ms) >= settings.goal * 60000 && goalCelebrated !== dayKey()) {
+    goalCelebrated = dayKey();
+    $("#listenHint").textContent = `Daily goal reached: ${settings.goal} minutes. Keep going if you like.`;
+  }
+}
+async function runTurn(me, audio = null) {
+  me.error = null;
+  if (audio) { me._audio = audio; me.pending = true; }
+  const ai = { id: uid(), who: "ai", text: "", pending: true };
+  const input = modelInput(session, audio);
+  session.messages.push(ai);
+  renderLog(); setBusy(true);
+  ctl = new AbortController();
+  try {
+    if (!input) throw { code: "invalid_request" };
+    const data = await sample.json(input, { modelTier: "quick", cache: false, signal: ctl.signal });
+    if (audio) {
+      const tr = str(data && data.transcript, 1500);
+      if (!tr) throw { code: "no_speech" };
+      me.text = tr; me.pending = false; delete me._audio;
+      const pr = data.pronunciation && typeof data.pronunciation === "object" ? data.pronunciation : null;
+      me.pron = pr ? { clarity: Math.min(5, Math.max(1, Math.round(Number(pr.clarity) || 3))),
+        issues: (Array.isArray(pr.issues) ? pr.issues : []).filter(x => x && str(x.word)).slice(0, 3).map(x => ({ word: str(x.word, 60), tip: str(x.tip, 300) })) } : null;
+    }
+    const reply = cleanSpoken(data && data.reply);
+    if (!reply) throw { code: "invalid_json" };
+    ai.text = reply; ai.pending = false;
+    const fb = data.feedback && typeof data.feedback === "object" ? data.feedback : null;
+    me.feedback = fb ? {
+      status: ["great", "minor", "fix"].includes(fb.status) ? fb.status : "minor",
+      corrected: str(fb.corrected, 1500) || me.text, natural: str(fb.natural, 1500),
+      notes: Array.isArray(fb.notes) ? fb.notes.map(n => str(n, 300)).filter(Boolean).slice(0, 3) : []
+    } : null;
+    const p = data.phrase && typeof data.phrase === "object" ? data.phrase : null;
+    me.phrase = p && str(p.text) ? { text: str(p.text, 200), meaning: str(p.meaning, 300) } : null;
+    const an = data.answer && typeof data.answer === "object" ? data.answer : null;
+    me.answer = an && Number(an.score) ? { score: Math.min(5, Math.max(1, Math.round(Number(an.score)))), tip: str(an.tip, 400) } : null;
+    trackTurn(me);
+    renderLog(); saveActive(); updateMeta();
+    replyOut(ai.text);
+  } catch (e) {
+    session.messages = session.messages.filter(m => m !== ai);
+    if (e && e.code === "cancelled") { renderLog(); return; }
+    if (audio && e && e.code === "no_speech") {
+      session.messages = session.messages.filter(m => m !== me);
+      $("#listenHint").textContent = errCopy(e);
+      renderLog(); saveActive();
+    } else if (!audio && e && e.code === "invalid_json" && str(e.text) && !/^\s*[{[]/.test(e.text)) {
+      const recovered = { id: uid(), who: "ai", text: cleanSpoken(e.text) };
+      session.messages.push(recovered);
+      trackTurn(me);
+      renderLog(); saveActive(); updateMeta();
+      replyOut(recovered.text);
+    } else {
+      me.error = errCopy(e); me.fatal = FATAL.has(e && e.code);
+      if (audio) { me.pending = false; }
+      renderLog(); saveActive();
+    }
+  } finally { setBusy(false); }
+}
+function setBusy(v) { busy = v; $("#micBtn").disabled = v; syncSend(); if (!v) ctl = null; }
+function syncSend() { $("#sendBtn").disabled = busy || !str($("#input").value); }
+function autoGrow() { const t = $("#input"); t.style.height = "auto"; t.style.height = Math.min(t.scrollHeight, 140) + "px"; }
+$("#input").addEventListener("input", () => { autoGrow(); syncSend(); if (recorder.active && recOwner === "main") finishRecording("cancel", true); });
+$("#input").addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey && !e.isComposing && window.matchMedia("(hover: hover)").matches) { e.preventDefault(); send($("#input").value); }
+});
+$("#sendBtn").addEventListener("click", () => send($("#input").value));
+
+/* ================= recording: Gemini hears your actual voice ================= */
+const hfree = { on: false, end() { this.on = false; } };
+const canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder && (window.AudioContext || window.webkitAudioContext) && window.OfflineAudioContext);
+const recorder = {
+  stream: null, ctx: null, mr: null, chunks: [], timer: null, active: false, mime: "", heard: false, src: null, startedAt: 0,
+  async open() {
+    if (!canRecord) throw { name: "NotSupportedError" };
+    if (this.stream && this.stream.getTracks().some(t => t.readyState === "live")) return;
+    this.stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
+  },
+  pickMime() {
+    for (const m of ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg;codecs=opus"])
+      if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) return m;
+    return "";
+  },
+  async start(onAuto) {
+    await this.open();
+    const mime = this.pickMime();
+    this.chunks = [];
+    this.mr = new MediaRecorder(this.stream, mime ? { mimeType: mime } : undefined);
+    this.mime = this.mr.mimeType || mime || "audio/webm";
+    this.mr.ondataavailable = e => { if (e.data && e.data.size) this.chunks.push(e.data); };
+    this.mr.start(250);
+    this.active = true; this.heard = false; this.startedAt = Date.now();
+    if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (this.ctx.state === "suspended") try { await this.ctx.resume(); } catch {}
+    this.src = this.ctx.createMediaStreamSource(this.stream);
+    const an = this.ctx.createAnalyser(); an.fftSize = 1024; this.src.connect(an);
+    const buf = new Float32Array(an.fftSize);
+    let floor = 0.006, last = Date.now(), n = 0, fired = false;
+    const fire = reason => { if (fired) return; fired = true; onAuto && onAuto(reason); };
+    this.timer = setInterval(() => {
+      an.getFloatTimeDomainData(buf);
+      let sum = 0; for (let i = 0; i < buf.length; i++) sum += buf[i] * buf[i];
+      const rms = Math.sqrt(sum / buf.length), now = Date.now();
+      if (n++ < 3) { floor = Math.min(0.05, Math.max(0.004, (floor + rms) / 2)); return; }
+      const thr = Math.max(0.012, floor * 3);
+      if (rms > thr) { this.heard = true; last = now; } else if (!this.heard) floor = floor * 0.95 + rms * 0.05;
+      if (now - this.startedAt > 90000) { fire("max"); return; }
+      if (!settings.handsFree) return;
+      const pauseMs = settings.pauseSec * 1000, silent = now - last;
+      if (this.heard && silent >= pauseMs) { fire("pause"); return; }
+      if (!this.heard && now - this.startedAt > 20000) { fire("idle"); return; }
+      if (recOwner === "main") $("#listenHint").textContent = this.heard && silent > 700
+        ? `Sending in ${Math.ceil((pauseMs - silent) / 1000)}s... keep talking to continue.`
+        : `Listening, hands-free. Sends after ${settings.pauseSec}s of silence. Tap the mic to send now.`;
+    }, 100);
+  },
+  stop() {
+    return new Promise(resolve => {
+      clearInterval(this.timer); this.timer = null;
+      try { this.src && this.src.disconnect(); } catch {}
+      this.src = null;
+      const mr = this.mr; this.active = false;
+      if (!mr || mr.state === "inactive") { resolve(null); return; }
+      mr.onstop = () => { const blob = new Blob(this.chunks, { type: this.mime }); this.chunks = []; resolve(blob.size ? blob : null); };
+      try { mr.stop(); } catch { resolve(null); }
+    });
+  },
+  release() { try { this.stream && this.stream.getTracks().forEach(t => t.stop()); } catch {} this.stream = null; }
+};
+async function blobToWav(blob) {
+  const ab = await blob.arrayBuffer();
+  const ctx = recorder.ctx || new (window.AudioContext || window.webkitAudioContext)();
+  const decoded = await new Promise((res, rej) => { const p = ctx.decodeAudioData(ab.slice(0), res, rej); if (p && p.then) p.then(res, rej); });
+  const rate = 16000, len = Math.max(1, Math.ceil(decoded.duration * rate));
+  const off = new OfflineAudioContext(1, len, rate);
+  const src = off.createBufferSource(); src.buffer = decoded; src.connect(off.destination); src.start();
+  const pcm = (await off.startRendering()).getChannelData(0);
+  const view = new DataView(new ArrayBuffer(44 + pcm.length * 2));
+  const w = (o, t) => { for (let i = 0; i < t.length; i++) view.setUint8(o + i, t.charCodeAt(i)); };
+  w(0, "RIFF"); view.setUint32(4, 36 + pcm.length * 2, true); w(8, "WAVE"); w(12, "fmt ");
+  view.setUint32(16, 16, true); view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+  view.setUint32(24, rate, true); view.setUint32(28, rate * 2, true); view.setUint16(32, 2, true); view.setUint16(34, 16, true);
+  w(36, "data"); view.setUint32(40, pcm.length * 2, true);
+  for (let i = 0; i < pcm.length; i++) { const v = Math.max(-1, Math.min(1, pcm[i])); view.setInt16(44 + i * 2, v < 0 ? v * 0x8000 : v * 0x7fff, true); }
+  const bytes = new Uint8Array(view.buffer);
+  let bin = ""; for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return { b64: btoa(bin), seconds: decoded.duration };
+}
+let recOwner = null;
+function recFail(e) {
+  hfree.end(); recOwner = null; setMic(false);
+  const n = e && e.name;
+  if (n === "NotAllowedError" || n === "SecurityError" || n === "NotSupportedError") { setMicBlocked(true); return; }
+  $("#listenHint").textContent = n === "NotFoundError" ? MIC_ERR["audio-capture"] : "Couldn't start the microphone. Try again.";
+}
+async function startRecording() {
+  if (busy || recorder.active || !session) return;
+  tts.cancel();
+  try {
+    recOwner = "main"; hfree.on = settings.handsFree;
+    await recorder.start(reason => finishRecording(reason));
+    setMic(true);
+  } catch (e) { recFail(e); }
+}
+const startListening = () => startRecording();
+async function finishRecording(reason = "tap", discard = false) {
+  if (!recorder.active) return;
+  const owner = recOwner, heard = recorder.heard;
+  const blob = await recorder.stop();
+  recOwner = null; hfree.end(); setMic(false);
+  if (discard || !blob || owner !== "main") return;
+  if (reason === "idle" || (!heard && reason !== "tap")) { $("#listenHint").textContent = "Didn't hear anything. Tap the mic when you're ready."; return; }
+  let wav;
+  try { wav = await blobToWav(blob); } catch { $("#listenHint").textContent = "Couldn't process that recording. Try again."; return; }
+  if (wav.seconds < 0.5) { $("#listenHint").textContent = "That was too short. Tap the mic and try again."; return; }
+  $("#listenHint").textContent = "";
+  await sendVoice(wav.b64, URL.createObjectURL(blob));
+}
+async function sendVoice(b64, url) {
+  if (busy || !session) return;
+  const me = { id: uid(), who: "me", text: "", pending: true, audioUrl: url, feedback: null };
+  session.messages.push(me);
+  await runTurn(me, b64);
+}
+$("#micBtn").addEventListener("click", () => {
+  if (micBlocked) { dictationHint(); return; }
+  if (recorder.active && recOwner === "main") { finishRecording("tap"); return; }
+  startRecording();
+});
+function replyOut(text) {
+  if (settings.autoSpeak) tts.speak(text, autoListen); else setTimeout(autoListen, 300);
+}
+function autoListen() {
+  setTimeout(() => {
+    if (!settings.handsFree || micBlocked || !session || busy || current !== "chat" || recorder.active || document.visibilityState !== "visible") return;
+    if (str($("#input").value)) return;
+    startRecording();
+  }, 250);
+}
+function syncHfBtn() {
+  const b = $("#hfBtn");
+  b.hidden = micBlocked;
+  b.setAttribute("aria-pressed", String(settings.handsFree));
+  b.title = settings.handsFree ? `Hands-free on, sends after ${settings.pauseSec}s pause` : "Hands-free off";
+}
+$("#hfBtn").addEventListener("click", () => {
+  settings.handsFree = !settings.handsFree; saveSettings(); syncHfBtn();
+  if (settings.handsFree) {
+    hfree.on = recorder.active && recOwner === "main";
+    $("#listenHint").textContent = `Hands-free on. The mic opens after the coach speaks and sends after a ${settings.pauseSec}s pause.`;
+    if (!recorder.active && !busy && session) startRecording();
+  } else {
+    hfree.end();
+    $("#listenHint").textContent = recorder.active ? "Hands-free off. Tap the mic when you're done." : "Hands-free off. Tap the mic to talk.";
+  }
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") { if (recorder.active) finishRecording("cancel", true); if (listener.active) listener.stop(true); }
+});
+function setMic(on) {
+  const b = $("#micBtn");
+  b.classList.toggle("on", on);
+  b.setAttribute("aria-label", on ? (hfree.on ? "Send now" : "Stop speaking") : "Start speaking");
+  if (on) $("#listenHint").textContent = hfree.on ? `Listening, hands-free. Sends after ${settings.pauseSec}s of silence. Tap the mic to send now.`
+    : settings.autoSend ? "Listening... tap again when you're done and it sends." : "Listening... tap again when you're done.";
+  else if (/^(Listening|Sending in)/.test($("#listenHint").textContent)) $("#listenHint").textContent = "";
+}
+
+function renderLog() {
+  if (!session) return;
+  const log = $("#log"); log.replaceChildren();
+  for (const m of session.messages) log.append(m.who === "ai" ? aiNode(m) : meNode(m));
+  log.scrollTop = log.scrollHeight;
+}
+function updateBubble(m) {
+  const n = document.querySelector(`[data-id="${m.id}"] .bubble`);
+  if (n) { n.textContent = m.text || "..."; n.classList.toggle("typing", !m.text); $("#log").scrollTop = $("#log").scrollHeight; }
+}
+function aiNode(m) {
+  const node = el("div", { class: "msg ai", "data-id": m.id },
+    el("div", { class: "bubble" + (m.pending && !m.text ? " typing" : ""), text: m.pending && !m.text ? "Thinking..." : m.text }));
+  if (!m.pending && m.text) node.append(el("div", { class: "tools" }, el("button", { class: "tiny", type: "button", text: "Play", onclick: () => tts.speak(m.text) })));
+  if (m.note) node.append(el("div", { class: "err", style: "text-align:left", text: m.note }));
+  return node;
+}
+function meNode(m) {
+  const node = el("div", { class: "msg me", "data-id": m.id }, el("div", { class: "bubble" + (m.pending && !m.text ? " typing" : ""), text: m.text || (m.pending ? "Listening to your recording..." : "(voice message)") }));
+  if (m.audioUrl) node.append(el("div", { class: "tools" }, el("button", { class: "tiny", type: "button", text: "Play my voice", onclick: () => { tts.cancel(); const a = new Audio(m.audioUrl); a.play().catch(() => {}); } })));
+  if (m.error) node.append(el("div", { class: "err" }, m.error, " ",
+    m.fatal ? null : el("button", { class: "tiny", type: "button", text: "Send again", onclick: () => { if (!busy) runTurn(m, m._audio || null); } })));
+  if (settings.showFeedback && (m.feedback || m.answer || m.pron)) node.append(feedbackNode(m));
+  return node;
+}
+function meter(n) { return el("span", { class: "meter", "aria-hidden": "true" }, [1, 2, 3, 4, 5].map(i => el("i", { class: i <= n ? "on" : "" }))); }
+function feedbackNode(m) {
+  const fb = m.feedback;
+  const card = el("div", { class: "fb " + (fb ? fb.status : "minor") });
+  if (fb) {
+    card.append(el("div", { class: "tag", text: { great: "Sounds natural", minor: "Small fixes", fix: "Let's fix this" }[fb.status] }));
+    const changed = norm(fb.corrected.replace(/\s+/g, "")) !== norm(m.text.replace(/\s+/g, ""));
+    if (changed) card.append(el("p", {}, el("span", { class: "lbl", text: "Corrected" }), diffNode(m.text, fb.corrected)));
+    if (fb.notes.length) card.append(el("ul", {}, fb.notes.map(n => el("li", { text: n }))));
+    if (fb.natural && norm(fb.natural) !== norm(fb.corrected)) {
+      const result = el("div", { class: "shadow-result" });
+      card.append(el("p", {}, el("span", { class: "lbl", text: "A fluent speaker might say" }), fb.natural),
+        el("div", { class: "tools" },
+          el("button", { class: "tiny", type: "button", text: "Hear it", onclick: () => tts.speak(fb.natural) }),
+          !micBlocked && getKey() ? el("button", { class: "tiny", type: "button", text: "Say it back", onclick: ev => shadow(fb.natural, result, ev.currentTarget) }) : null,
+          saveBtn(fb.natural, "Natural way to say it")),
+        result);
+    } else if (fb.status === "great") card.append(el("p", { class: "muted", text: "Clear and correct. Keep going." }));
+  }
+  if (m.pron) card.append(el("div", { class: "sub" },
+    el("span", { class: "lbl" }, `Pronunciation clarity ${m.pron.clarity}/5`, meter(m.pron.clarity)),
+    m.pron.issues.length ? m.pron.issues.map(x => el("div", { style: "margin-top:6px" }, el("b", { text: x.word }), x.tip ? ": " + x.tip : "",
+      el("div", { class: "tools" }, el("button", { class: "tiny", type: "button", text: "Hear it", onclick: () => tts.speak(x.word) }))))
+      : el("div", { class: "muted", text: "Every word came through clearly." })));
+  if (m.answer) card.append(el("div", { class: "sub" },
+    el("span", { class: "lbl" }, `Answer strength ${m.answer.score}/5`, meter(m.answer.score)),
+    m.answer.tip ? el("div", { text: m.answer.tip }) : null));
+  if (m.phrase) card.append(el("div", { class: "sub" },
+    el("span", { class: "lbl", text: "Useful phrase" }), el("b", { text: m.phrase.text }),
+    m.phrase.meaning ? el("div", { class: "muted", text: m.phrase.meaning }) : null,
+    el("div", { class: "tools" }, el("button", { class: "tiny", type: "button", text: "Hear it", onclick: () => tts.speak(m.phrase.text) }), saveBtn(m.phrase.text, m.phrase.meaning))));
+  return card;
+}
+const hasPhrase = t => P.phrases.some(p => pkey(p.text) === pkey(t));
+function saveBtn(text, meaning) {
+  const b = el("button", { class: "tiny", type: "button", text: hasPhrase(text) ? "Saved" : "Save" });
+  b.addEventListener("click", () => {
+    if (hasPhrase(text)) { b.textContent = "Saved"; return; }
+    delete P.deleted[pkey(text)];
+    P.phrases.unshift({ id: uid(), text: str(text, 300), meaning: str(meaning, 300), at: Date.now() });
+    P.phrases = P.phrases.slice(0, 300);
+    persistP(); b.textContent = "Saved";
+  });
+  return b;
+}
+async function shadow(target, out, btn) {
+  if (busy) return;
+  if (recorder.active && recOwner === "shadow") { shadowFinish(target, out, btn); return; }
+  if (recorder.active) await finishRecording("cancel", true);
+  tts.cancel();
+  try {
+    recOwner = "shadow";
+    await recorder.start(() => shadowFinish(target, out, btn));
+    btn.textContent = "Stop";
+    out.replaceChildren(el("span", { class: "muted", text: "Recording... say the sentence, then tap Stop." }));
+  } catch (e) { recFail(e); out.replaceChildren(el("span", { class: "muted", text: "Couldn't use the microphone." })); }
+}
+async function shadowFinish(target, out, btn) {
+  if (!recorder.active || recOwner !== "shadow") return;
+  const blob = await recorder.stop();
+  recOwner = null;
+  btn.textContent = "Checking..."; btn.disabled = true;
+  try {
+    if (!blob) throw { code: "no_speech" };
+    const wav = await blobToWav(blob);
+    if (wav.seconds < 0.5) throw { code: "no_speech" };
+    const data = await sample.json([{ role: "user", content: [
+      { text: `Target sentence: "${target}". The attached audio is an English learner reading it aloud. Reply with ONLY JSON: {"heard": string, "clarity": 1-5, "issues": [{"word": string, "tip": string}]}. heard: exactly what they said, word for word. Only flag words you are confident were unclear or mispronounced, at most 3. A Filipino accent is fine when clear. Each tip is one simple sentence about mouth, lips or tongue. Never use em dashes.` },
+      { inlineData: { mimeType: "audio/wav", data: wav.b64 } }] }]);
+    const heard = str(data && data.heard, 500);
+    if (!heard) throw { code: "no_speech" };
+    const clarity = Math.min(5, Math.max(1, Math.round(Number(data.clarity) || 3)));
+    const issues = (Array.isArray(data.issues) ? data.issues : []).filter(x => x && str(x.word)).slice(0, 3);
+    const tw = words(target), mask = matchMask(words(heard), tw);
+    const line = el("div", {});
+    tw.forEach((w, k) => { if (k) line.append(" "); line.append(mask[k] ? w : el("span", { class: "miss", text: w })); });
+    out.replaceChildren(el("b", {}, `Clarity ${clarity}/5`, meter(clarity)), line,
+      el("div", { class: "muted", text: "Heard: " + heard }),
+      ...issues.map(x => el("div", { style: "margin-top:4px" }, el("b", { text: str(x.word, 60) }), str(x.tip, 300) ? ": " + str(x.tip, 300) : "")));
+  } catch (e) {
+    out.replaceChildren(el("span", { class: "muted", text: errCopy(e) }));
+  } finally { btn.textContent = "Say it back"; btn.disabled = false; }
+}
+
+/* ================= mic blocked: keyboard dictation fallback ================= */
+const BLOCK_CODES = new Set(["not-allowed", "service-not-allowed", "unsupported"]);
+let micBlocked = !canRecord || store.get("micBlocked", false) === true;
+function setMicBlocked(v) {
+  micBlocked = !!v || !canRecord;
+  if (canRecord) store.set("micBlocked", micBlocked);
+  if (micBlocked && hfree.on) hfree.end();
+  applyMicMode();
+  if (micBlocked && current === "chat") dictationHint();
+}
+function applyMicMode() {
+  const b = $("#micBtn");
+  b.querySelector(".ic-mic").hidden = micBlocked;
+  b.querySelector(".ic-kbd").hidden = !micBlocked;
+  b.setAttribute("aria-label", micBlocked ? "Speak with your keyboard's mic" : "Start speaking");
+  $("#input").placeholder = micBlocked ? "Tap here, then your keyboard's mic key" : "Tap the mic and speak, or type here";
+  syncHfBtn();
+}
+function dictationHint() {
+  const h = $("#listenHint");
+  $("#input").focus();
+  h.replaceChildren("Tap the mic key on your keyboard and speak, then tap send. ",
+    canRecord ? el("button", { class: "tiny", type: "button", text: "Try the mic again", onclick: () => { setMicBlocked(false); h.textContent = ""; startRecording(); } }) : null);
+}
+
+/* ================= sound drills ================= */
+const DRILLS = [
+  { id: "pf", title: "P vs F", why: "Easy to swap, so \"fan\" can come out as \"pan\".",
+    tip: "F: rest your top teeth on your lower lip and blow air through. P: press both lips together, then pop them open.",
+    items: ["fan", "pan", "fine", "pine", "coffee", "copy", "feel", "peel", "Please fill in the form.", "I prefer the fast format."] },
+  { id: "bv", title: "B vs V", why: "\"Very\" and \"berry\" should sound different.",
+    tip: "V: top teeth touch your lower lip and your voice buzzes. B: both lips together, then release.",
+    items: ["very", "berry", "vest", "best", "vote", "boat", "van", "ban", "The van is in the basement.", "I have a very valid view."] },
+  { id: "th", title: "TH sounds", why: "\"Think\" often becomes \"tink\", and \"three\" becomes \"tree\".",
+    tip: "Put the tip of your tongue lightly between your teeth and push air out. Keep it soft, don't tap it like a T.",
+    items: ["think", "three", "thank", "thing", "this", "that", "weather", "month", "I think three things matter.", "Thanks for the update this month."] },
+  { id: "iee", title: "Ship vs sheep", why: "Short \"i\" and long \"ee\" change the meaning.",
+    tip: "Short i (ship): relaxed and quick. Long ee (sheep): smile slightly and hold it longer.",
+    items: ["ship", "sheep", "live", "leave", "fit", "feet", "sit", "seat", "Please sit in this seat.", "Will you live here or leave?"] },
+  { id: "ssh", title: "S vs SH", why: "\"See\" and \"she\" should stay distinct.",
+    tip: "S: smile, tongue behind your top teeth, thin hiss. SH: round your lips and push them forward.",
+    items: ["see", "she", "sip", "ship", "sort", "short", "sign", "shine", "Make sure the shipment is sent.", "She checked the short summary."] },
+  { id: "z", title: "Z sound", why: "Z is often said as S, so \"prize\" sounds like \"price\".",
+    tip: "Make an S sound, then add your voice so your throat buzzes. Touch your throat to feel it.",
+    items: ["zoo", "zero", "prize", "price", "busy", "easy", "reason", "result", "The reason is easy to explain.", "It's zero percent this year."] },
+  { id: "ends", title: "Word endings", why: "Final sounds like -ed, -ths and -sts often get dropped.",
+    tip: "Slow down at the end of the word and finish every consonant. \"Asked\" ends with a clear T sound.",
+    items: ["asked", "worked", "months", "texts", "clothes", "tasks", "fixed", "reports", "She asked for the last six months of reports.", "I worked late and fixed the tasks."] },
+  { id: "work", title: "Work words", why: "Long words you use at work, said clearly.",
+    tip: "Break long words into beats and stress the right one: re-gu-LA-to-ry is wrong, REG-u-la-to-ry is right.",
+    items: ["regulatory", "pharmaceutical", "inspection", "observation", "schedule", "analysis", "specifically", "particularly", "The inspection report is ready for review.", "We specifically checked the regulatory schedule."] }
+];
+let drillOpen = null, drillRes = {}, dictTarget = null, drillSrBlocked = false;
+const drillDict = () => micBlocked || !SR || drillSrBlocked;
+function judge(target, heard) {
+  const tw = words(target), hw = words(heard);
+  if (!hw.length) return { pass: false, pct: 0 };
+  if (tw.length === 1) {
+    const t = norm(tw[0]);
+    const pass = hw.map(norm).includes(t);
+    return { pass, pct: pass ? 100 : 0 };
+  }
+  const mask = matchMask(hw, tw);
+  const real = tw.filter(w => norm(w)).length || 1;
+  const hit = tw.filter((w, k) => norm(w) && mask[k]).length;
+  const pct = Math.round(hit / real * 100);
+  return { pass: pct >= 90, pct, mask };
+}
+function recordDrill(d) {
+  const results = d.items.map(it => drillRes[it]).filter(Boolean);
+  if (results.length < d.items.length) return;
+  const score = results.filter(x => x.pass).length;
+  const prev = P.sounds[d.id] || {};
+  P.sounds[d.id] = { best: Math.max(num(prev.best), score), last: score, total: d.items.length, at: Date.now() };
+  persistP();
+}
+function renderSounds() {
+  const root = $("#sounds");
+  if (drillOpen) { renderDrill(DRILLS.find(d => d.id === drillOpen)); return; }
+  root.replaceChildren(el("h1", { class: "hello", text: "Sound drills" }),
+    el("p", { class: "stats", text: "Short drills for sounds that are commonly tricky for Filipino speakers of English. Listen, say each one, and see if it came through clearly." }));
+  for (const d of DRILLS) {
+    const rec = P.sounds[d.id];
+    root.append(el("button", { class: "scn", type: "button", style: "width:100%;margin-bottom:10px", onclick: () => { drillOpen = d.id; drillRes = {}; dictTarget = null; renderSounds(); root.scrollTop = 0; } },
+      el("div", {}, el("b", { text: d.title }), el("span", { text: d.why }),
+        rec ? el("span", { style: "display:block;margin-top:4px", class: rec.best === rec.total ? "ok" : "", text: `Best ${rec.best} of ${rec.total}, last ${rec.last} of ${rec.total}` }) : null)));
+  }
+  root.append(el("div", { class: "card" }, el("h2", { text: "Want sound-by-sound scoring?" }),
+    el("p", { class: "muted", style: "margin:0", text: "These drills check whether each word came through clearly. For detailed scoring of individual sounds, free tools like ELSA Speak's free section or Speakometer go deeper. You can also search \"how to pronounce\" plus any word on Google and use its practice mic." })));
+}
+function renderDrill(d) {
+  const root = $("#sounds");
+  const done = d.items.filter(it => drillRes[it]).length, passed = d.items.filter(it => drillRes[it] && drillRes[it].pass).length;
+  const list = el("div", { class: "card" });
+  for (const it of d.items) {
+    const res = drillRes[it];
+    const single = words(it).length === 1;
+    const sayBtn = el("button", { class: "tiny", type: "button", text: "Say it" });
+    sayBtn.addEventListener("click", () => sayItem(d, it, sayBtn));
+    list.append(el("div", { class: "drill-item" },
+      el("span", { class: "w", text: it }),
+      el("button", { class: "tiny", type: "button", text: "Hear it", onclick: () => tts.speak(it) }),
+      sayBtn,
+      single ? el("a", { class: "tiny", href: `https://www.google.com/search?q=${encodeURIComponent("how to pronounce " + it)}`, target: "_blank", rel: "noopener", text: "Google" }) : null,
+      res ? el("div", { class: "res" }, res.pass ? el("span", { class: "ok", text: "Clear. " }) : el("span", { class: "no", text: single ? "Not clear yet. " : `${res.pct}% came through. ` }),
+        el("span", { class: "muted", text: `Heard: "${res.heard}"` })) : null));
+  }
+  root.replaceChildren(
+    el("button", { class: "ghost", type: "button", text: "All drills", onclick: () => { if (listener.active) listener.stop(true); drillOpen = null; renderSounds(); } }),
+    el("h1", { class: "hello", text: d.title }),
+    el("div", { class: "card" }, el("b", { text: "How to make it" }), el("p", { style: "margin:6px 0 0", text: d.tip })),
+    el("p", { class: "stats", text: done ? `${passed} of ${done} clear so far${done === d.items.length ? ". Drill complete." : "."}` : (drillDict() ? "Tap Say it, then use your keyboard's mic key to speak." : "Tap Say it and speak. Say just the word or sentence shown.") }),
+    list,
+    drillDict() && dictTarget ? dictBox(d) : null,
+    done === d.items.length ? el("button", { class: "primary", type: "button", text: "Try again", onclick: () => { drillRes = {}; renderDrill(d); } }) : null);
+}
+function dictBox(d) {
+  const inp = el("input", { class: "field", type: "text", autocomplete: "off", autocapitalize: "off", "aria-label": `Dictate: ${dictTarget}` });
+  const check = () => { const heard = str(inp.value, 300); if (!heard) { inp.focus(); return; } drillRes[dictTarget] = Object.assign({ heard }, judge(dictTarget, heard)); dictTarget = null; recordDrill(d); renderDrill(d); };
+  inp.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); check(); } });
+  setTimeout(() => inp.focus(), 50);
+  return el("div", { class: "dictbox" }, el("div", {}, el("span", { class: "muted", text: "Now say: " }), el("b", { text: dictTarget })),
+    el("div", { class: "muted", style: "font-size:.88rem", text: "Tap your keyboard's mic key and speak. Don't fix the text, it should show exactly what was heard." }),
+    el("div", { class: "rowx" }, inp, el("button", { class: "ghost", type: "button", text: "Check", onclick: check })));
+}
+function sayItem(d, it, btn) {
+  if (drillDict()) { dictTarget = it; renderDrill(d); return; }
+  if (listener.active && listener.owner === "drill") { listener.stop(false); return; }
+  if (listener.active) listener.stop(true);
+  btn.textContent = "Stop";
+  const ok = listener.start({
+    onUpdate: () => {},
+    onDone: (heard, cancelled) => {
+      listener.owner = null;
+      if (cancelled) { btn.textContent = "Say it"; return; }
+      drillRes[it] = Object.assign({ heard: str(heard, 300) || "(nothing)" }, judge(it, heard));
+      recordDrill(d);
+      if (drillOpen === d.id && current === "sounds") renderDrill(d);
+    },
+    onError: code => { if (BLOCK_CODES.has(code)) { drillSrBlocked = true; dictTarget = it; renderDrill(d); } }
+  });
+  if (ok) listener.owner = "drill"; else btn.textContent = "Say it";
+}
+
+/* ================= end + summary ================= */
+$("#endBtn").addEventListener("click", endSession);
+async function endSession() {
+  if (!session) return;
+  if (listener.active) listener.stop(true);
+  if (recorder.active) await finishRecording("cancel", true);
+  if (ctl) ctl.abort();
+  tts.cancel(); clearInterval(metaTimer);
+  const done = session; session = null;
+  clearActive();
+  const mine = done.messages.filter(m => m.who === "me" && !m.error);
+  if (!mine.length) { show("home"); return; }
+  const tail = Math.min(Math.max(0, Date.now() - num(done.lastAt, Date.now())), 60000);
+  done.activeMs = num(done.activeMs) + tail;
+  addDaily({ ms: tail, sessions: 1 });
+  const wordsSpoken = mine.reduce((a, m) => a + countWords(m.text), 0);
+  const entry = { id: done.id, at: Date.now(), scenario: chatTitle(done), level: done.level,
+    ivType: isInterview(done) && done.iv ? done.iv.type : null, ivDiff: isInterview(done) && done.iv ? done.iv.diff : null,
+    ms: Math.max(60000, done.activeMs), words: wordsSpoken, turns: mine.length, summary: null, summaryError: "" };
+  show("summary");
+  $("#summary").replaceChildren(el("h1", { class: "hello", text: "Nice work." }),
+    el("p", { class: "stats", text: `${entry.scenario}, ${fmtMin(entry.ms)}, ${wordsSpoken} words, ${mine.length} ${mine.length === 1 ? "message" : "messages"}.` }),
+    el("div", { class: "loading", text: "Reviewing your conversation..." }));
+
+  const transcript = done.messages.filter(m => m.text && !m.error).slice(-40).map(m => m.who === "ai" ? `Coach: ${m.text}`
+    : `Learner: ${m.text}${m.feedback && m.feedback.corrected !== m.text ? `\n  (corrected: ${m.feedback.corrected})` : ""}${m.answer ? `\n  (answer score ${m.answer.score}/5)` : ""}`).join("\n");
+  const iv = isInterview(done);
+  const prompt = [
+    "You are an English speaking coach reviewing a practice conversation by a Filipino professional learning to speak English fluently.",
+    `Learner level: ${LEVELS[done.level].text}`,
+    iv ? `This was a job interview practice (${chatTitle(done)}${done.iv && done.iv.role ? `, role: ${done.iv.role}` : ""}). Also judge the interview answers as a real hiring manager would.` : "",
+    "Transcript (learner speech came through speech-to-text, ignore punctuation):",
+    transcript.slice(-30000), "",
+    "Reply with ONLY this JSON object:",
+    '{"headline": string, "scores": {"fluency": 1-5, "grammar": 1-5, "vocabulary": 1-5' + (iv ? ', "answers": 1-5' : "") + '}, "strengths": [string], "focus": [{"pattern": string, "example": string, "better": string, "tip": string}], "phrases": [string], "next": string}',
+    "headline: one honest, encouraging sentence about this session. strengths: 2 or 3 specific things they did well. focus: up to 3 recurring mistake patterns" + (iv ? " (language or interview-answer weaknesses)" : "") + ", each with one real example from the transcript, the better version and a one-line tip in plain language. phrases: up to 4 useful phrases for this situation to practice. next: one concrete suggestion for the next session. Be honest, not flattering. Never use em dashes."
+  ].filter(Boolean).join("\n");
+  try { entry.summary = sanitizeSummary(await sample.json(prompt, { modelTier: "default", cache: false })); }
+  catch (e) { entry.summaryError = errCopy(e); }
+  H = mergeH([entry], H); store.set("h2", H);
+  remote.pushSession(entry);
+  renderSummary(entry);
+}
+function sanitizeSummary(d) {
+  if (!d || typeof d !== "object") return null;
+  const sc = d.scores || {};
+  const clamp = v => Math.min(5, Math.max(1, Math.round(Number(v) || 3)));
+  const scores = { fluency: clamp(sc.fluency), grammar: clamp(sc.grammar), vocabulary: clamp(sc.vocabulary) };
+  if (sc.answers != null && Number(sc.answers)) scores.answers = clamp(sc.answers);
+  return {
+    headline: str(d.headline, 300), scores,
+    strengths: (Array.isArray(d.strengths) ? d.strengths : []).map(s => str(s, 300)).filter(Boolean).slice(0, 4),
+    focus: (Array.isArray(d.focus) ? d.focus : []).filter(f => f && typeof f === "object").slice(0, 3).map(f => ({
+      pattern: str(f.pattern, 120), example: str(f.example, 300), better: str(f.better, 300), tip: str(f.tip, 300) })),
+    phrases: (Array.isArray(d.phrases) ? d.phrases : []).map(s => str(s, 200)).filter(Boolean).slice(0, 5),
+    next: str(d.next, 300)
+  };
+}
+const SCORE_LABEL = { fluency: "Fluency", grammar: "Grammar", vocabulary: "Vocabulary", answers: "Answers" };
+function summaryBody(entry) {
+  const s = entry.summary;
+  if (!s) return [el("div", { class: "notice", text: (entry.summaryError || "No review for this session.") + " Your practice still counted." })];
+  const pips = n => el("div", { class: "pips", "aria-hidden": "true" }, [1, 2, 3, 4, 5].map(i => el("i", { class: i <= n ? "on" : "" })));
+  return [
+    s.headline ? el("p", { style: "font-size:1.1rem", text: s.headline }) : null,
+    el("div", { class: "scores" }, Object.keys(s.scores).map(k =>
+      el("div", { class: "score", "aria-label": `${SCORE_LABEL[k]} ${s.scores[k]} out of 5` }, el("b", { text: s.scores[k] }), pips(s.scores[k]), el("span", { text: SCORE_LABEL[k] })))),
+    s.strengths.length ? el("div", { class: "card" }, el("h2", { text: "What went well" }), el("ul", {}, s.strengths.map(t => el("li", { text: t })))) : null,
+    s.focus.length ? el("div", { class: "card" }, el("h2", { text: "Work on these" }),
+      s.focus.map(f => el("div", { class: "focus-item" }, el("b", { text: f.pattern }),
+        f.example ? el("div", { class: "muted", text: "You said: " + f.example }) : null,
+        f.better ? el("div", {}, "Better: ", el("b", { text: f.better })) : null,
+        f.tip ? el("div", { text: f.tip }) : null,
+        f.better ? el("div", { class: "tools" }, el("button", { class: "tiny", type: "button", text: "Hear it", onclick: () => tts.speak(f.better) }), saveBtn(f.better, f.tip)) : null))) : null,
+    s.phrases.length ? el("div", { class: "card" }, el("h2", { text: "Phrases to practice" }),
+      s.phrases.map(p => el("div", { class: "phrase-row", style: "padding:6px 0" }, el("div", { text: p }),
+        el("button", { class: "tiny", type: "button", text: "Hear it", onclick: () => tts.speak(p) }), saveBtn(p, "")))) : null,
+    s.next ? el("div", { class: "card" }, el("h2", { text: "Next time" }), el("p", { style: "margin:0", text: s.next })) : null
+  ];
+}
+function renderSummary(entry) {
+  $("#summary").replaceChildren(el("h1", { class: "hello", text: "Nice work." }),
+    el("p", { class: "stats", text: `${entry.scenario}, ${fmtMin(entry.ms)}, ${entry.words} words, ${entry.turns} ${entry.turns === 1 ? "message" : "messages"}.` }),
+    ...summaryBody(entry).filter(Boolean),
+    el("button", { class: "primary", type: "button", text: "Practice again", onclick: () => show("home") }));
+}
+
+/* ================= progress record ================= */
+function barChart() {
+  const days = []; const d = new Date(); d.setDate(d.getDate() - 13);
+  for (let i = 0; i < 14; i++) { const k = dayKey(d); days.push({ k, label: d.getDate(), mins: num((P.daily[k] || {}).ms) / 60000 }); d.setDate(d.getDate() + 1); }
+  const W = 320, Hh = 150, top = 14, base = 120, bw = 16, gap = (W - 20 - bw * 14) / 13;
+  const maxV = Math.max(settings.goal || 0, ...days.map(x => x.mins), 5);
+  const y = v => base - (v / maxV) * (base - top);
+  const g = svg("svg", { class: "chart", viewBox: `0 0 ${W} ${Hh}`, role: "img", "aria-label": "Practice minutes for the last 14 days" });
+  g.append(svg("line", { x1: 10, x2: W - 10, y1: base, y2: base, stroke: "var(--line)", "stroke-width": 1 }));
+  days.forEach((x, i) => {
+    const xx = 10 + i * (bw + gap), h = Math.max(x.mins > 0 ? 3 : 0, base - y(x.mins));
+    const hit = settings.goal && x.mins >= settings.goal;
+    g.append(svg("rect", { x: xx, y: base - h, width: bw, height: h, rx: 4, fill: hit ? "var(--accent)" : "var(--primary)" }, svg("title", {}, `${x.k}: ${Math.round(x.mins)} min`)));
+    g.append(svg("text", { x: xx + bw / 2, y: base + 16, "text-anchor": "middle", "font-size": 10, fill: "var(--muted)" }, String(x.label)));
+  });
+  if (settings.goal) {
+    g.append(svg("line", { x1: 10, x2: W - 10, y1: y(settings.goal), y2: y(settings.goal), stroke: "var(--ink)", "stroke-width": 1, "stroke-dasharray": "4 4", opacity: .6 }));
+    g.append(svg("text", { x: W - 10, y: y(settings.goal) - 4, "text-anchor": "end", "font-size": 10, fill: "var(--muted)" }, `Goal ${settings.goal} min`));
+  }
+  return g;
+}
+function scoreTrend() {
+  const scored = H.filter(h => h.summary).slice(0, 10);
+  if (scored.length < 2) return el("p", { class: "muted", style: "margin:0", text: "Finish a few reviewed sessions to see your score trend." });
+  const half = Math.max(1, Math.floor(scored.length / 2));
+  const recent = scored.slice(0, half), older = scored.slice(half);
+  const avg = (arr, k) => { const v = arr.map(h => h.summary.scores[k]).filter(Boolean); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
+  const keys = ["fluency", "grammar", "vocabulary"]; if (scored.some(h => h.summary.scores.answers)) keys.push("answers");
+  return el("table", { class: "trend" },
+    el("tr", {}, el("th", { text: "" }), el("th", { text: `Earlier ${older.length}` }), el("th", { text: `Latest ${recent.length}` }), el("th", { text: "Change" })),
+    keys.map(k => {
+      const a = avg(older, k), b = avg(recent, k);
+      const diff = a != null && b != null ? b - a : null;
+      return el("tr", {}, el("td", { text: SCORE_LABEL[k] }), el("td", { text: a != null ? a.toFixed(1) : "-" }), el("td", { text: b != null ? b.toFixed(1) : "-" }),
+        el("td", { style: diff > 0.05 ? "color:var(--good)" : diff < -0.05 ? "color:var(--fix)" : "", text: diff == null ? "-" : diff > 0.05 ? `Up ${diff.toFixed(1)}` : diff < -0.05 ? `Down ${Math.abs(diff).toFixed(1)}` : "Steady" }));
+    }));
+}
+function renderProgress() {
+  const root = $("#progress");
+  const t = totals(), s = streaks();
+  const syncText = { connecting: "Checking cloud sync...", synced: "Progress syncs to your Claude account, so it follows you on any device where you open this page.",
+    local: "Progress is saved in this browser on this device. Download a backup now and then. Backups work in both Kwentuhan Studio and the Kwentuhan Claude app.",
+    error: remote.msg || "Sync paused." }[remote.state];
+  root.replaceChildren(
+    el("h1", { class: "hello", text: "Your progress" }),
+    el("p", { class: "stats", text: syncText }),
+    el("div", { class: "totals" },
+      el("div", { class: "total" }, el("b", { text: fmtMin(t.ms) }), el("span", { text: "Speaking practice" })),
+      el("div", { class: "total" }, el("b", { text: t.words.toLocaleString() }), el("span", { text: "Words spoken" })),
+      el("div", { class: "total" }, el("b", { text: `${s.cur} ${s.cur === 1 ? "day" : "days"}` }), el("span", { text: `Current streak, best ${s.best}` })),
+      el("div", { class: "total" }, el("b", { text: t.sessions }), el("span", { text: settings.goal ? `Sessions, goal met on ${t.goalDays} ${t.goalDays === 1 ? "day" : "days"}` : "Sessions finished" }))),
+    el("div", { class: "card" }, el("h2", { text: "Last 14 days" }), barChart(), el("div", { class: "chart-legend" }, el("span", {}, el("i", { style: "background:var(--primary)" }), "Practice minutes"), settings.goal ? el("span", {}, el("i", { style: "background:var(--accent)" }), "Goal met") : null, settings.goal ? el("span", { text: "Dashed line: daily goal" }) : null)),
+    el("div", { class: "card" }, el("h2", { text: "Score trend" }), scoreTrend()),
+    el("div", { class: "card" }, el("h2", { text: "Save your record" }),
+      el("p", { class: "muted", style: "margin:0", text: downloads
+        ? "Download a spreadsheet of every session, or a full backup you can restore later."
+        : "Downloads aren't available in this view. You can still restore from a backup file." }),
+      el("div", { class: "btnrow" },
+        downloads ? el("button", { class: "ghost", type: "button", text: "Download progress report (CSV)", onclick: e => exportCSV(e.currentTarget) }) : null,
+        downloads ? el("button", { class: "ghost", type: "button", text: "Download full backup", onclick: e => exportJSON(e.currentTarget) }) : null,
+        el("button", { class: "ghost", type: "button", text: "Restore from backup", onclick: () => $("#restoreInput").click() })),
+      el("p", { class: "hint", id: "recordMsg" }))
+  );
+}
+const csvCell = v => { const s = v == null ? "" : String(v); return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+async function saveFile(btn, filename, data) {
+  const msg = $("#recordMsg");
+  if (!downloads) { msg.textContent = "Downloads aren't available in this view."; return; }
+  btn.disabled = true;
+  try { const r = await downloads.save({ filename, data }); msg.textContent = r && r.status === "delivered" ? "Sent." : "Saved."; }
+  catch (e) {
+    const code = e && e.code;
+    msg.textContent = code === "declined" ? "" : code === "rate_limited" ? "A save prompt is already open. Finish that one first." : "Couldn't save the file here. Try again from the Claude app or claude.ai.";
+  } finally { btn.disabled = false; }
+}
+function exportCSV(btn) {
+  const head = ["Date", "Situation", "Level", "Minutes", "Words", "Messages", "Fluency", "Grammar", "Vocabulary", "Interview answers", "Summary", "Next step"];
+  const rows = H.slice().sort((a, b) => a.at - b.at).map(h => [new Date(h.at).toISOString().slice(0, 16).replace("T", " "), h.scenario, LEVELS[h.level].label,
+    Math.round(h.ms / 60000), h.words, h.turns, h.summary ? h.summary.scores.fluency : "", h.summary ? h.summary.scores.grammar : "",
+    h.summary ? h.summary.scores.vocabulary : "", h.summary && h.summary.scores.answers ? h.summary.scores.answers : "", h.summary ? h.summary.headline : "", h.summary ? h.summary.next : ""]);
+  const daily = [[], ["Date", "Practice minutes", "Words", "Messages", "Goal met"]].concat(Object.keys(P.daily).sort().map(k => {
+    const d = P.daily[k]; return [k, Math.round(num(d.ms) / 60000), num(d.words), num(d.msgs), settings.goal ? (num(d.ms) >= settings.goal * 60000 ? "Yes" : "No") : ""]; }));
+  const csv = [head, ...rows, ...daily].map(r => r.map(csvCell).join(",")).join("\r\n");
+  saveFile(btn, `kwentuhan-progress-${dayKey()}.csv`, "\uFEFF" + csv);
+}
+function exportJSON(btn) {
+  const data = JSON.stringify({ app: "kwentuhan", version: 2, exportedAt: new Date().toISOString(), progress: P, history: H }, null, 1);
+  saveFile(btn, `kwentuhan-backup-${dayKey()}.json`, data);
+}
+$("#restoreInput").addEventListener("change", e => {
+  const f = e.target.files && e.target.files[0];
+  e.target.value = "";
+  if (!f) return;
+  const msg = () => $("#recordMsg");
+  if (f.size > 8 * 1024 * 1024) { if (msg()) msg().textContent = "That file is too large to be a Kwentuhan backup."; return; }
+  const rd = new FileReader();
+  rd.onerror = () => { if (msg()) msg().textContent = "Couldn't read that file."; };
+  rd.onload = () => {
+    try {
+      const d = JSON.parse(String(rd.result));
+      if (!d || d.app !== "kwentuhan" || !d.progress) throw new Error("shape");
+      const incomingH = (Array.isArray(d.history) ? d.history : []).map(cleanH).filter(Boolean);
+      const before = H.length;
+      P = mergeP(P, cleanP(d.progress)); settings = P.settings;
+      H = mergeH(H, incomingH);
+      store.set("p2", P); store.set("h2", H);
+      remote.queueProgress(0);
+      const ids = new Set(incomingH.map(h => h.id));
+      for (const h of H) if (ids.has(h.id)) remote.pushSession(h);
+      renderProgress();
+      $("#recordMsg").textContent = `Backup restored. ${H.length - before} new ${H.length - before === 1 ? "session" : "sessions"} added, phrases and daily totals merged.`;
+    } catch { if (msg()) msg().textContent = "That isn't a Kwentuhan backup file."; }
+  };
+  rd.readAsText(f);
+});
+
+/* ================= phrases & history ================= */
+function renderPhrases() {
+  const root = $("#phrases");
+  root.replaceChildren(el("h1", { class: "hello", text: "Your phrases" }),
+    el("p", { class: "stats", text: P.phrases.length ? "Tap Hear it, then say each one out loud a few times." : "" }));
+  if (!P.phrases.length) { root.append(el("div", { class: "empty", text: "Phrases you save during practice show up here. Tap Save on any suggestion to keep it." })); return; }
+  for (const p of P.phrases) root.append(el("div", { class: "card phrase-row" },
+    el("div", {}, el("b", { text: p.text }), p.meaning ? el("div", { class: "muted", text: p.meaning }) : null),
+    el("button", { class: "tiny", type: "button", text: "Hear it", onclick: () => tts.speak(p.text) }),
+    el("button", { class: "tiny", type: "button", text: "Remove", onclick: () => {
+      P.deleted[pkey(p.text)] = Date.now();
+      P.phrases = P.phrases.filter(x => x.id !== p.id);
+      persistP(); renderPhrases(); } })));
+}
+function renderHistory() {
+  const root = $("#history");
+  root.replaceChildren(el("h1", { class: "hello", text: "History" }));
+  if (!H.length) { root.append(el("div", { class: "empty", text: "Finished conversations and their reviews show up here." })); return; }
+  for (const h of H) {
+    const d = new Date(h.at);
+    root.append(el("details", { class: "card hist" },
+      el("summary", {}, el("b", { text: h.scenario }),
+        el("span", { class: "muted", text: `${d.toLocaleDateString(undefined, { month: "short", day: "numeric" })}, ${fmtMin(h.ms)}, ${h.words} words${h.summary ? `, fluency ${h.summary.scores.fluency}/5` : ""}` })),
+      el("div", { style: "margin-top:10px" }, ...summaryBody(h))));
+  }
+}
+
+/* ================= boot ================= */
+tts.load();
+applyMicMode();
+show("home");
+remote.init();
+window.addEventListener("pagehide", () => { tts.cancel(); if (listener.active) listener.stop(true); if (recorder.active) finishRecording("cancel", true); recorder.release(); });
+})();
+</script>
+</body>
+</html>
